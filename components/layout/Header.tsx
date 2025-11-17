@@ -71,7 +71,7 @@ const Header = () => {
 
           {/* Main header */}
           <div className="flex items-center justify-between py-4">
-            {/* Logo */}
+            {/* Logo1 */}
             <Link href="/" className="flex items-center space-x-2 cursor-pointer">
               <Image src="/exsurion-logo.svg" alt="Logo" width={100} height={100} className='h-16 w-full object-cover' />
             </Link>
