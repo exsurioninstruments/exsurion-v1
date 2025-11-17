@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Box, Settings, Code, Shield } from "lucide-react"
 
 export default function ServicesExpertise() {
-  const certifications = ["Award-Winning Firm", "Trusted by Leading Enterprises", "ISO 13485 Certified"]
+  const certifications = ["Award-Winning Firm", "Trusted by Leading Enterprises", "Exsurion Certified"]
 
  
 
@@ -52,12 +52,14 @@ export default function ServicesExpertise() {
             </div>
           ))}
 
+          
+          
           {/* BSI Certification badge */}
           <div className="flex items-center">
             <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center">
               <div className="text-black text-xs font-bold text-center">
-                <div>BSI</div>
-                <div className="text-[8px]">ISO 13485</div>
+                <div>Exsurion</div>
+                <div className="text-[8px]">Best</div>
                 <div className="text-[8px]">Quality</div>
                 <div className="text-[8px]">Management</div>
                 <div className="text-[8px]">CERTIFIED</div>
@@ -65,6 +67,7 @@ export default function ServicesExpertise() {
             </div>
           </div>
         </div>
+        
 
         {/* Call to action buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
