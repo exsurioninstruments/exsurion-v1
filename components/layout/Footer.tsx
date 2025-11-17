@@ -190,15 +190,15 @@ const Footer = () => {
             {/* Awards placeholders */}
             <div className="flex items-center gap-8 flex-wrap">
               <div className="flex items-center gap-2">
-                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                  <span className="text-xs font-bold text-black">CLUTCH</span>
+                <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
+                  <span className="text-xs font-bold">CLUTCH</span>
                 </div>
                 <div className="text-xs text-gray-400">Top 5 Award</div>
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                  <span className="text-xs font-bold text-black">GL</span>
+                <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
+                  <span className="text-xs font-bold">GL</span>
                 </div>
                 <div className="text-xs text-gray-400">
                   <div>greenlight guru</div>
@@ -219,8 +219,8 @@ const Footer = () => {
               </div>
 
               <div className="flex items-center gap-2">
-                <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
-                  <span className="text-xs font-bold text-black">GF</span>
+                <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center">
+                  <span className="text-xs font-bold">GF</span>
                 </div>
                 <div className="text-xs text-gray-400">
                   <div>GoodFirms</div>
