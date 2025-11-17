@@ -56,7 +56,7 @@ const Header = () => {
     <>
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
         <div className="px-4 sm:px-6 lg:px-8">
-          {/* Top bar
+          {/* Top barr
           <div className="hidden md:flex justify-between items-center py-2 text-sm text-muted-foreground border-b border-border">
             <div>Free shipping on orders over $500</div>
             <div className="flex gap-4">
