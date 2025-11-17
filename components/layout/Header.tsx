@@ -76,7 +76,7 @@ const Header = () => {
               <Image src="/exsurion-logo.svg" alt="Logo" width={100} height={100} className='h-16 w-full object-cover' />
             </Link>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation /*/}
             <nav className="hidden lg:flex items-center space-x-8 ml-8">
               <Link href="/about" className="text-sm font-medium hover:text-primary transition-colors">
                 About
