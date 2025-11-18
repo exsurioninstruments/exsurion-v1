@@ -56,9 +56,9 @@ const Footer = () => {
   ]
 
   const socialLinks = [
-    { name: "LinkedIn", href: "#", icon: Linkedin },
-    { name: "Facebook", href: "#", icon: Facebook },
-    { name: "Instagram", href: "#", icon: Instagram },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/exsurioninstruments", icon: Linkedin },
+    { name: "Facebook", href: "https://www.facebook.com/exsurion.instruments/", icon: Facebook },
+    { name: "Instagram", href: "https://www.instagram.com/exsurion.instruments/", icon: Instagram },
   ]
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -71,7 +71,8 @@ const Footer = () => {
     <footer className="bg-black text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Top section with logo and newsletter */}
-        <div className="py-12 flex flex-col lg:flex-row justify-between items-start gap-8">
+        {/* UPDATED THIS LINE */}
+        <div className="py-12 flex flex-col lg:flex-row justify-center items-center gap-8">
           {/* Logo and certification */}
           <div className="flex items-center gap-6">
             <div className="flex items-center space-x-3">

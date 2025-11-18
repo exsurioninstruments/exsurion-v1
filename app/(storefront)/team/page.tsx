@@ -14,7 +14,7 @@ const teamMembers = [
     role: "Chief Executive Officer (CEO)",
     expertise: ["Business Leadership", "Strategy", "Operations Management"],
     description:
-      "As the visionary behind Exsurion, M. Yaqoob leads with strategy, focus, and an unwavering commitment to innovation. His leadership philosophy is simple — empower people, build quality, and earn trust.",
+      "Since being the founder of Exsurion, M. Yaqoob has been the driving force behind strategy, direction, and sheer determination towards innovation. His leadership credo is straightforward — engage people, create quality, and gain trust. Under his vision, Exsurion expands as a global brand in dental expertise.Expertise: Business Leadership | Strategy | Operations Management",
     image: "/team-member-ceo-professional-portrait.jpg",
   },
   {
@@ -23,7 +23,7 @@ const teamMembers = [
     role: "Clinical Advisor",
     expertise: ["Oral Surgery", "Restorative Dentistry", "Product Evaluation"],
     description:
-      "A dental expert committed to excellence, Dr. Faizan ensures that every Exsurion product meets the highest clinical standards. His deep understanding guides our innovations toward real-world precision.",
+      "A dental professional dedicated to excellence, Dr. Faizan ensures that all products of Exsurion are of the highest clinical standards. His extensive knowledge of oral surgery and restorative treatments informs our innovations towards real-world precision and dependability",
     image: "/team-member-clinical-advisor-portrait.jpg",
   },
   {
@@ -32,7 +32,7 @@ const teamMembers = [
     role: "Technical Head / AI-ML Engineer",
     expertise: ["Artificial Intelligence", "Machine Learning", "Digital Systems"],
     description:
-      "A passionate innovator, Shahzaib manages Exsurion's digital and technical infrastructure. He focuses on intelligent automation and data-driven solutions that enhance efficiency and accuracy.",
+      "An ardent entrepreneur, Shahzaib Yaqoob oversees Exsurion's digital and technological side. He is dedicated to smart automation and data-driven solutions that ensure efficiency, accuracy, and global capabilities.",
     image: "/team-member-technical-head-portrait.jpg",
   },
   {
@@ -41,7 +41,7 @@ const teamMembers = [
     role: "Team Leader",
     expertise: ["Team Management", "Project Coordination", "Operational Leadership"],
     description:
-      "A results-oriented professional, Burhan ensures smooth team coordination across departments. His leadership fosters collaboration, efficiency, and excellence throughout every project.",
+      "A performance-driven individual, Burhan Zulfiqar ensures the smooth flow of team coordination department-wise. His leadership promotes collaboration, efficiency, and excellence in each project.",
     image: "/team-member-team-leader-portrait.jpg",
   },
   {
@@ -50,8 +50,8 @@ const teamMembers = [
     role: "Graphic Designer",
     expertise: ["Graphic Design", "Brand Identity", "Product Visualization"],
     description:
-      "A creative mind with an eye for precision, Areeba transforms ideas into visuals that define Exsurion's identity. Her work captures elegance, clarity, and trust — values at our core.",
-    image: "/team-member-designer-portrait.jpg",
+      "A mind that thinks creatively and sees things with precision, Areeba Choudhary brings ideas to life through visuals that reflect the identity of Exsurion. Her creations reflect elegance, clarity, and trust — values that form the foundation of our brand.",
+    image: "/team-member-designer-portrait.png",
   },
   {
     id: 6,
@@ -59,7 +59,7 @@ const teamMembers = [
     role: "Client Support Specialist",
     expertise: ["Client Relations", "Order Fulfillment", "Global Logistics"],
     description:
-      "Our dedicated support specialist ensures seamless communication, timely delivery, and exceptional service. She upholds Exsurion's commitment to reliability and customer satisfaction globally.",
+      "A mind that thinks creatively and sees things with precision, Areeba Choudhary brings ideas to life through visuals that reflect the identity of Exsurion. Her creations reflect elegance, clarity, and trust — values that form the foundation of our brand.",
     image: "/team-member-support-specialist-portrait.jpg",
   },
 ]
@@ -150,8 +150,8 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.8, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            Our biggest strength at Exsurion lies in our people. Together, our engineers, designers, strategists, and
-            medical specialists create cutting-edge dental solutions that redefine precision and inspire confidence.
+            Our greatest strength at Exsurion is our people. Collectively, our engineers, designers, strategists, and 
+            medical experts craft innovative dental solutions that redefine precision and instill confidence
           </motion.p>
           <motion.p
             className="text-lg text-foreground/60 leading-relaxed"
@@ -160,8 +160,8 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            From concept to completion, our team works with passion and purpose — combining innovation, craftsmanship,
-            and expertise to shape the future of dental care.
+            Our greatest strength at Exsurion is our people. Collectively, our engineers, designers, strategists, 
+            and medical experts craft innovative dental solutions that redefine precision and instill confidence
           </motion.p>
         </div>
       </section>
@@ -342,7 +342,7 @@ const TeamsPage = (props: Props) => {
                 {/* Card */}
                 <div className="relative bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-accent/50 transition-all h-full flex flex-col">
                   {/* Image Container with Overlay */}
-                  <div className="relative h-64 overflow-hidden bg-gradient-to-br from-accent/10 to-primary/10">
+                  <div className="relative h-83 overflow-hidden bg-gradient-to-br from-accent/10 to-primary/10">
                     <Image
                       src={member.image || "/background.png"}
                       alt={member.name}
@@ -445,9 +445,9 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            Driven by precision and passion, the Exsurion team continues to innovate and refine — crafting instruments
-            that set new benchmarks in quality, performance, and trust. Every member brings unique expertise,
-            creativity, and dedication to our mission of advancing dental excellence globally.
+            
+            Inspired by accuracy and devotion, the Exsurion team innovates and improves continually
+              designing instruments that define new standards in quality, performance, and trust
           </motion.p>
         </div>
       </section>

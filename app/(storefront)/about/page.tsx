@@ -136,8 +136,8 @@ const AboutPage = () => {
                   <div className="w-16 h-1 bg-primary rounded-full mb-8" />
                 </div>
                 <p className="text-lg md:text-xl text-foreground/75 leading-relaxed">
-                  To advance dental care globally by delivering instruments that combine accuracy, durability, and
-                  usability. Every product reflects our dedication to craftsmanship, innovation, and professional trust.
+                  To promote dental healthcare worldwide by providing instruments that unite precision, longevity, and 
+                  user-friendliness. Each product embodies our commitment to craftsmanship, innovation, and professional confidence
                 </p>
                 <p className="text-base text-foreground/60 leading-relaxed">
                   We are committed to setting new standards in the dental instrumentation industry through continuous
@@ -161,8 +161,8 @@ const AboutPage = () => {
                   <div className="w-16 h-1 bg-primary rounded-full mb-8" />
                 </div>
                 <p className="text-lg md:text-xl text-foreground/75 leading-relaxed">
-                  To be a world-class leader in dental instrumentation, shaping the future of dental care through
-                  innovative solutions, uncompromising quality, and exceptional service.
+                  To be a global leader in dental instrumentation, defining the future of dental healthcare with
+                   innovative solutions, uncompromising quality, and superior service.
                 </p>
                 <p className="text-base text-foreground/60 leading-relaxed">
                   We aspire to be recognized globally as the preferred partner for dental professionals who demand
@@ -198,9 +198,9 @@ const AboutPage = () => {
           >
             <h2 className="text-4xl md:text-5xl  font-bold text-foreground mb-6">Our People — The Heart of Exsurion</h2>
             <p className="text-lg text-foreground/70 leading-relaxed max-w-2xl mx-auto">
-              Engineers, designers, strategists, and dental professionals work together to create cutting-edge dental
-              solutions. From the earliest concept to the final product, our people bring passion, creativity, and
-              expertise.
+                Our people are our biggest asset. Engineers, designers, strategists, and dental professionals collaborate
+              to develop innovative dental solutions. From initial idea to last product, our individuals implement passion,
+                       imagination, and experience, fueling each innovation and setting high standards of accuracy.
             </p>
           </motion.div>
 
@@ -253,8 +253,8 @@ const AboutPage = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            We are dedicated to shaping the future of dental care. Through teamwork, innovation, and a relentless focus
-            on quality, we ensure that every instrument we deliver enables professionals to perform at their best.
+             we're committed to building the future of dental healthcare. With collaboration, creativity, and a never-ending
+            pursuit of excellence, we guarantee that every instrument we provide empowers professionals to deliver their best
           </motion.p>
           <motion.div
             className="pt-8 border-t border-primary-foreground/20"

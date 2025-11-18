@@ -5,36 +5,36 @@ import Image from "next/image"
 
 const benefits = [
   {
-    title: "Innovation-Driven Culture",
+    title: "Innovation-Culture",
     description:
-      "Be part of a team that constantly challenges boundaries, embraces new ideas, and refines every detail.",
+      "Join a culture that pushes limits, adapts to new concepts, and improves each step of the way.",
     icon: "🚀",
   },
   {
-    title: "Professional Growth",
+    title: "Personal Development",
     description:
-      "Access learning opportunities, mentorship, and exposure to cutting-edge dental manufacturing processes.",
+      "Have access to professional development, mentorship, and training in the latest dental manufacturing techniques.",
     icon: "📈",
   },
   {
-    title: "Global Impact",
+    title: "Global Reach",
     description:
-      "Your work will support clients and dental professionals around the world, making a tangible difference in healthcare.",
+      "Your contributions will aid clients and dental professionals globally, leaving a real-world impact on the healthcare industry.",
     icon: "🌍",
   },
   {
-    title: "Collaborative Environment",
-    description: "Work alongside skilled professionals who value teamwork, creativity, and excellence.",
+    title: "Team-Based Culture: ",
+    description: "Join talented professionals who share enthusiasm for teamwork, creativity, and perfection.",
     icon: "🤝",
   },
   {
     title: "Flexible Hours",
-    description: "Balance your work and personal life with schedules that support your productivity.",
+    description: "Divide your work and personal hours in ways that enhance your productivity.",
     icon: "⏰",
   },
   {
     title: "Employee Benefits",
-    description: "Enjoy competitive compensation, health coverage, and other perks that value your contributions.",
+    description: "Receive competitive pay, health insurance, and other benefits that appreciate your hard work.",
     icon: "🎁",
   },
 ]
@@ -42,25 +42,25 @@ const benefits = [
 const opportunities = [
   {
     category: "Engineering & Design",
-    description: "Innovate and develop precision dental instruments.",
+    description: "Innovate and create precision dental devices.",
     icon: "⚙️",
     image: "/engineering.webp",
   },
   {
     category: "Medical & Clinical Expertise",
-    description: "Ensure products meet the highest dental standards.",
+    description: "Ensure products embody the highest dental standards.",
     icon: "🏥",
     image: "/medical.jpg",
   },
   {
     category: "Business & Operations",
-    description: "Drive strategy, logistics, and customer success.",
+    description: "Spearhead strategy, logistics, and customer success.",
     icon: "💼",
     image: "/business.jpg",
   },
   {
     category: "Creative & Digital Roles",
-    description: "Graphic design, branding, and digital systems management.",
+    description: "Graphic design, branding, and management of digital systems.",
     icon: "🎨",
     image: "/creative.webp",
   },
@@ -134,9 +134,10 @@ const CareerPage = () => {
                 transition={{ duration: 0.8, delay: 0.1 }}
                 viewport={{ once: true }}
               >
-                At Exsurion Instruments, our greatest strength lies in our people. We are a team of engineers,
-                designers, strategists, and dental professionals committed to delivering precision-made dental
-                instruments that set global standards.
+                Our people are our greatest asset at Exsurion Instruments. We are a group of engineers, designers, strategists,
+                and dentists dedicated to creating precision-made dental instruments that are the best in the world.Each one of
+                us brings specialized knowledge, imagination, and dedication — and we are constantly on the lookout for talented,
+                  ambitious individuals to add to our team
               </motion.p>
             </motion.div>
 

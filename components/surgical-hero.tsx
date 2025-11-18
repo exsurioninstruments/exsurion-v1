@@ -21,7 +21,10 @@ export function SurgicalHero({
       {/* Left / Right split - Added fixed heights: 96 on mobile, screen height on md and up */}
       <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr] h-96 md:h-[750px]">
         {/* Visual panel - UPDATED BACKGROUND COLOR */}
-        <div className="bg-amber-100 flex items-center justify-center overflow-hidden">
+        <div 
+          style={{ backgroundColor: "#FFF8DE" }} 
+          className="flex items-center justify-center overflow-hidden"
+        >
           <div className="relative w-full h-full">
             {/* Product imagery */}
             <Image
