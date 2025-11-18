@@ -56,9 +56,13 @@ const Footer = () => {
   ]
 
   const socialLinks = [
-    { name: "LinkedIn", href: "https://www.linkedin.com/in/exsurioninstruments", icon: Linkedin },
+    { name: "LinkedIn",  href: "https://www.linkedin.com/in/exsurioninstruments", icon: Linkedin },
     { name: "Facebook", href: "https://www.facebook.com/exsurion.instruments/", icon: Facebook },
     { name: "Instagram", href: "https://www.instagram.com/exsurion.instruments/", icon: Instagram },
+    { name: "Tiktok", href: "https://www.instagram.com/exsurion.instruments/", icon: Instagram },
+    { name: "Instagram", href: "https://www.instagram.com/exsurion.instruments/", icon: Instagram },
+    { name: "Instagram", href: "https://www.instagram.com/exsurion.instruments/", icon: Instagram },
+    
   ]
 
   const handleSubscribe = (e: React.FormEvent) => {
@@ -238,9 +242,9 @@ const Footer = () => {
                   <Link
                     key={social.name}
                     href={social.href}
-                    className="w-8 h-8 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-gray-700 transition-colors"
+                    className="w-8 h-8 rounded-full flex items-center justify-center text-white-800 hover:text-white hover:bg-stone-500 transition-colors"
                   >
-                    <social.icon className="w-4 h-4" />
+                    <social.icon className="w-9 h-9" />
                   </Link>
                 ))}
               </div>

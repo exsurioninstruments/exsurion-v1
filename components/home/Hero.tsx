@@ -71,12 +71,16 @@ export function HeroSection() {
 
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center pt-4">
             <Link href={heroContent.primaryButton?.url || fallbackContent.primaryButton.url}>
-              <Button size="lg" className="px-8 py-3 text-base font-medium">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-stone-100 to-orange-200 text-gray-800 hover:from-stone-200 hover:to-orange-300 px-4 py-1 text-sm font-bold rounded-full transition-all duration-300
+                ring-1 ring-gray-400"
+              >
                 {heroContent.primaryButton?.text || fallbackContent.primaryButton.text}
               </Button>
             </Link>
             <Link href={heroContent.secondaryButton?.url || fallbackContent.secondaryButton.url}>
-              <button className="transition-colors border-b pb-1 text-base font-medium hover:opacity-70">
+              <button className="transition-colors text-base font-medium bg-transparent text-white hover:bg-gradient-to-r hover:from-stone-100 hover:to-orange-200 hover:text-black outline outline-1 outline-white rounded-full px-5 py-2">
                 {heroContent.secondaryButton?.text || fallbackContent.secondaryButton.text}
               </button>
             </Link>

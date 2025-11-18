@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Box, Settings, Code, Shield } from "lucide-react"
 
 export default function ServicesExpertise() {
-  const certifications = ["Award-Winning Firm", "Trusted by Leading Enterprises", "Exsurioon Certified"]
+  const certifications = ["Award-Winning", "Trusted by Leading Enterprises", "Exsurioon Certified"]
 
  
 
