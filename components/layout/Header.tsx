@@ -47,16 +47,25 @@ function MobileSearch() {
   );
 }
 
+const navItems = [
+  { name: 'About', href: '/about' },
+  { name: 'Careers', href: '/careers' },
+  { name: 'Team', href: '/team' },
+  { name: 'Delivery', href: '/delivery' },
+  { name: 'Contact', href: '/contact' },
+];
+
 const Header = () => {
   const { itemCount, setIsOpen: setCartOpen } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState(null);
 
   return (
     <>
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
         <div className="px-4 sm:px-6 lg:px-8">
-          {/* Top bar
+          {/* Top bar (This is the original commented out code)
           <div className="hidden md:flex justify-between items-center py-2 text-sm text-muted-foreground border-b border-border">
             <div>Free shippinng on orders over $500</div>
             <div className="flex gap-4">
@@ -76,24 +85,43 @@ const Header = () => {
               <Image src="/exsurion-logo.svg" alt="Logo" width={100} height={100} className='h-16 w-full object-cover' />
             </Link>
 
-            {/* Desktop Navigation /*/}
-            <nav className="hidden lg:flex items-center space-x-8 ml-8">
-              <Link href="/about" className="text-sm font-medium hover:text-primary transition-colors">
-                About
-              </Link>
-              <Link href="/careers" className="text-sm font-medium hover:text-primary transition-colors">
-                Careers
-              </Link>
-              <Link href="/team" className="text-sm font-medium hover:text-primary transition-colors">
-                Team
-              </Link>
-              <Link href="/delivery" className="text-sm font-medium hover:text-primary transition-colors">
-                Delivery
-              </Link>
-              <Link href="/contact" className="text-sm font-medium hover:text-primary transition-colors">
-                Contact
-              </Link>
+            {/* --- CHANGE START: Desktop Navigation logic updated for bold on hover --- */}
+            <nav 
+              className="hidden lg:flex items-center space-x-8 ml-8"
+              onMouseLeave={() => setHoveredLink(null)} // Clear hover state when mouse leaves nav
+            >
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className="relative text-lg" // Base styles
+                  onMouseEnter={() => setHoveredLink(item.name)}
+                >
+                  {/* This span now controls the font-weight and color based on hover state */}
+                  <span 
+                    className={`transition-all ${
+                      hoveredLink === item.name 
+                        ? 'font-bold text-primary' // State when hovered
+                        : 'font-medium text-foreground' // State when not hovered
+                    }`}
+                  >
+                    {item.name}
+                  </span>
+                  
+                  {/* The animated underline (appears only on hover) */}
+                  {hoveredLink === item.name && (
+                    <motion.div
+                      className="absolute left-0 -bottom-1 h-0.5 w-full bg-primary"
+                      layoutId="nav-underline" // This shared ID creates the sliding effect
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                    />
+                  )}
+                </Link>
+              ))}
             </nav>
+            {/* --- CHANGE END --- */}
 
             {/* Search - Desktop */}
             <Suspense fallback={<div className="hidden md:block w-64 lg:w-80" />}>
@@ -114,7 +142,7 @@ const Header = () => {
 
               {/* Mobile search - will be shown in mobile menu */}
 
-              {/* Cart */}
+              {/* Cart (This is the original commented out code) */}
               {/* <Button
                 variant="ghost"
                 size="sm"
@@ -157,42 +185,21 @@ const Header = () => {
                     <MobileSearch />
                   </Suspense>
                 </div>
+                
+                {/* Mobile nav links */}
                 <nav className="flex flex-col py-4 space-y-4">
-                  <Link 
-                    href="/about" 
-                    className="px-4 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    About
-                  </Link>
-                  <Link 
-                    href="/careers" 
-                    className="px-4 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Careers
-                  </Link>
-                  <Link 
-                    href="/team" 
-                    className="px-4 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Team
-                  </Link>
-                  <Link 
-                    href="/delivery" 
-                    className="px-4 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Delivery
-                  </Link>
-                  <Link 
-                    href="/contact" 
-                    className="px-4 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Contact
-                  </Link>
+                  {navItems.map((item) => (
+                    <Link 
+                      key={item.href}
+                      href={item.href} 
+                      // --- CHANGE START: Changed font-bold to font-medium and added hover:font-bold ---
+                      className="px-4 py-2 text-base font-medium hover:font-bold hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                      // --- CHANGE END ---
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                 </nav>
               </motion.div>
             )}

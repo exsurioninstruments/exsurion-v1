@@ -51,7 +51,7 @@ const teamMembers = [
     expertise: ["Graphic Design", "Brand Identity", "Product Visualization"],
     description:
       "A mind that thinks creatively and sees things with precision, Areeba Choudhary brings ideas to life through visuals that reflect the identity of Exsurion. Her creations reflect elegance, clarity, and trust — values that form the foundation of our brand.",
-    image: "/team-member-designer-portrait.png",
+    image: "/team-member-designer-portrait.jpg",
   },
   {
     id: 6,
@@ -64,6 +64,195 @@ const teamMembers = [
   },
 ]
 
+// --- TYPEWRITER HOOK ---
+const useTypewriter = (text: string, speed = 30) => {
+  const [displayedText, setDisplayedText] = useState("")
+
+  useEffect(() => {
+    setDisplayedText("")
+
+    if (text) {
+      let i = 0
+      const intervalId = setInterval(() => {
+        if (i < text.length) {
+          setDisplayedText((prev) => prev + text.charAt(i))
+          i++
+        } else {
+          clearInterval(intervalId)
+        }
+      }, speed)
+
+      return () => clearInterval(intervalId)
+    }
+  }, [text, speed])
+
+  return displayedText
+}
+
+// --- VARIANT DEFINITIONS ---
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" as const },
+  },
+}
+
+// --- TEAM MEMBER CARD COMPONENT ---
+type TeamMemberCardProps = {
+  member: (typeof teamMembers)[0]
+}
+
+const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
+  const [isRevealed, setIsRevealed] = useState(false)
+  const typedDescription = useTypewriter(
+    isRevealed ? member.description : "",
+    30 // Typing speed in ms
+  )
+
+  const handleClick = () => {
+    setIsRevealed(true) // Only reveal, don't toggle
+  }
+
+  // --- NEW VARIANTS for overlay and text ---
+  const overlayVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.3, staggerChildren: 0.1 }, // Stagger children
+    },
+  }
+
+  const textVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3 },
+    },
+  }
+
+  return (
+    <motion.div
+      variants={itemVariants}
+      className="group relative"
+      whileHover={{ y: -8 }}
+      onClick={handleClick}
+    >
+      {/* Card Background Glow */}
+      <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all opacity-0 group-hover:opacity-100" />
+
+      {/* Card */}
+      <div className="relative bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-accent/50 transition-all h-full flex flex-col cursor-pointer">
+        {/* Image Container with Overlay */}
+        <div className="relative h-83 overflow-hidden bg-gradient-to-br from-accent/10 to-primary/10">
+          <Image
+            src={member.image || "/background.png"}
+            alt={member.name}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            width={1000}
+            height={1000}
+          />
+          {/* --- MODIFIED OVERLAY --- */}
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end p-6"
+            initial="hidden"
+            whileHover="visible"
+            animate={isRevealed ? "hidden" : "hidden"} // Hide overlay after click
+            variants={overlayVariants} // Apply overlay variants
+          >
+            {/* --- MODIFIED TEXT --- */}
+            <motion.p
+              className="text-sm font-bold text-white mb-2" // <-- UPDATED CLASSES
+              variants={textVariants} // Apply text variants
+            >
+              Click to view details
+            </motion.p>
+          </motion.div>
+        </div>
+
+        {/* Content */}
+        <div className="p-6 flex-1 flex flex-col">
+          <motion.h3
+            className="text-2xl font-semibold text-foreground mb-1"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            {member.name}
+          </motion.h3>
+          <motion.p
+            className="text-sm font-medium mb-4"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.15 }}
+            viewport={{ once: true }}
+          >
+            {member.role}
+          </motion.p>
+
+          {/* --- CLICK-TO-REVEAL CONTENT --- */}
+          <AnimatePresence>
+            {isRevealed && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.5 }}
+                className="flex-1 flex flex-col" // Use flex to manage layout
+              >
+                <motion.p
+                  className="text-foreground/70 leading-relaxed mb-6 flex-1" // flex-1 to take up space
+                >
+                  {typedDescription}
+                  {/* Blinking cursor (requires tailwind.config.js setup) */}
+                  <span className="animate-blink">|</span>
+                </motion.p>
+
+                {/* Expertise Tags */}
+                <motion.div
+                  className="flex flex-wrap gap-2"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.25 }}
+                >
+                  {member.expertise.map((skill) => (
+                    <motion.span
+                      key={skill}
+                      className="text-xs px-3 py-1 bg-white/10 rounded-full border border-accent/20 hover:border-accent/50 transition-all"
+                      whileHover={{
+                        scale: 1.05,
+                        backgroundColor: "var(--accent)",
+                        color: "var(--accent-foreground)",
+                      }}
+                    >
+                      {skill}
+                    </motion.span>
+                  ))}
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
+// --- MAIN TEAMS PAGE COMPONENT ---
 const TeamsPage = (props: Props) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
@@ -95,32 +284,14 @@ const TeamsPage = (props: Props) => {
 
   const paginate = (newDirection: number) => {
     setDirection(newDirection)
-    setCurrentIndex((prev) => (prev + newDirection + teamMembers.length) % teamMembers.length)
-  }
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: "easeOut" as const },
-    },
+    setCurrentIndex(
+      (prev) => (prev + newDirection + teamMembers.length) % teamMembers.length
+    )
   }
 
   return (
     <main>
-      {/* Hero Section */}
+      {/* Hero Section (Unchanged) */}
       <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-primary/5 to-background relative overflow-hidden">
         <motion.div
           className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
@@ -150,8 +321,10 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.8, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            Our greatest strength at Exsurion is our people. Collectively, our engineers, designers, strategists, and 
-            medical experts craft innovative dental solutions that redefine precision and instill confidence
+            Our greatest strength at Exsurion is our people. Collectively, our
+            engineers, designers, strategists, and medical experts craft
+            innovative dental solutions that redefine precision and instill
+            confidence
           </motion.p>
           <motion.p
             className="text-lg text-foreground/60 leading-relaxed"
@@ -160,13 +333,15 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Our greatest strength at Exsurion is our people. Collectively, our engineers, designers, strategists, 
-            and medical experts craft innovative dental solutions that redefine precision and instill confidence
+            Our greatest strength at Exsurion is our people. Collectively, our
+            engineers, designers, strategists, and medical experts craft
+            innovative dental solutions that redefine precision and instill
+            confidence
           </motion.p>
         </div>
       </section>
 
-      {/* Infinite Carousel Section */}
+      {/* Infinite Carousel Section (Unchanged) */}
       <section className="py-20 md:py-28 px-4 md:px-8 bg-background">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -176,10 +351,13 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Meet Our Leadership</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Meet Our Leadership
+            </h2>
             <div className="w-20 h-1 bg-accent rounded-full mx-auto mb-4" />
             <p className="text-lg text-foreground/60">
-              Driven by precision and passion, our team continues to innovate and refine.
+              Driven by precision and passion, our team continues to innovate
+              and refine.
             </p>
           </motion.div>
 
@@ -261,7 +439,10 @@ const TeamsPage = (props: Props) => {
                         <motion.span
                           key={skill}
                           className="px-4 py-2 bg-white/10  rounded-full text-sm font-medium border border-accent/30"
-                          whileHover={{ scale: 1.05, backgroundColor: "var(--accent)" }}
+                          whileHover={{
+                            scale: 1.05,
+                            backgroundColor: "var(--accent)",
+                          }}
                           transition={{ duration: 0.2 }}
                         >
                           {skill}
@@ -313,7 +494,7 @@ const TeamsPage = (props: Props) => {
         </div>
       </section>
 
-      {/* Grid View Section */}
+      {/* --- MODIFIED Grid View Section --- */}
       <section className="py-20 md:py-28 px-4 md:px-8 bg-secondary/5">
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -323,7 +504,9 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Full Team Overview</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+              Full Team Overview
+            </h2>
             <div className="w-20 h-1 bg-accent rounded-full mx-auto" />
           </motion.div>
 
@@ -334,95 +517,14 @@ const TeamsPage = (props: Props) => {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {teamMembers.map((member, idx) => (
-              <motion.div key={member.id} variants={itemVariants} className="group relative" whileHover={{ y: -8 }}>
-                {/* Card Background Glow */}
-                <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all opacity-0 group-hover:opacity-100" />
-
-                {/* Card */}
-                <div className="relative bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-accent/50 transition-all h-full flex flex-col">
-                  {/* Image Container with Overlay */}
-                  <div className="relative h-83 overflow-hidden bg-gradient-to-br from-accent/10 to-primary/10">
-                    <Image
-                      src={member.image || "/background.png"}
-                      alt={member.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      width={1000}
-                      height={1000}
-                    />
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end p-6"
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <div className="text-white">
-                        <p className="text-sm font-medium text-accent mb-2">Click to view details</p>
-                      </div>
-                    </motion.div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6 flex-1 flex flex-col">
-                    <motion.h3
-                      className="text-2xl font-semibold text-foreground mb-1"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: 0.1 }}
-                      viewport={{ once: true }}
-                    >
-                      {member.name}
-                    </motion.h3>
-                    <motion.p
-                      className="text-sm font-medium mb-4"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: 0.15 }}
-                      viewport={{ once: true }}
-                    >
-                      {member.role}
-                    </motion.p>
-                    <motion.p
-                      className="text-foreground/70 leading-relaxed mb-6 flex-1"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                      viewport={{ once: true }}
-                    >
-                      {member.description}
-                    </motion.p>
-
-                    {/* Expertise Tags */}
-                    <motion.div
-                      className="flex flex-wrap gap-2"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: 0.25 }}
-                      viewport={{ once: true }}
-                    >
-                      {member.expertise.map((skill) => (
-                        <motion.span
-                          key={skill}
-                          className="text-xs px-3 py-1 bg-white/10 rounded-full border border-accent/20 hover:border-accent/50 transition-all"
-                          whileHover={{
-                            scale: 1.05,
-                            backgroundColor: "var(--accent)",
-                            color: "var(--accent-foreground)",
-                          }}
-                        >
-                          {skill}
-                        </motion.span>
-                      ))}
-                    </motion.div>
-                  </div>
-                </div>
-              </motion.div>
+            {teamMembers.map((member) => (
+              <TeamMemberCard key={member.id} member={member} />
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Closing Section */}
+      {/* Closing Section (Unchanged) */}
       <section
         className="py-20 md:py-28 px-4 md:px-8 bg-primary/5 bg-cover bg-center bg-no-repeat relative"
         style={{ backgroundImage: "url('/join-us.jpg')" }}
@@ -445,9 +547,9 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            
-            Inspired by accuracy and devotion, the Exsurion team innovates and improves continually
-              designing instruments that define new standards in quality, performance, and trust
+            Inspired by accuracy and devotion, the Exsurion team innovates and
+            improves continually designing instruments that define new
+            standards in quality, performance, and trust
           </motion.p>
         </div>
       </section>
