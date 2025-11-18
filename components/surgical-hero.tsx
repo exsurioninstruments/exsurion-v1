@@ -22,7 +22,7 @@ export function SurgicalHero({
       <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr] h-96 md:h-[750px]">
         {/* Visual panel - UPDATED BACKGROUND COLOR */}
         <div 
-          style={{ backgroundColor: "#fff5cfff" }} 
+          style={{ backgroundColor: "#ffeea8ff" }} 
           className="flex items-center justify-center overflow-hidden"
         >
           <div className="relative w-full h-full">
