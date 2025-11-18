@@ -59,7 +59,10 @@ const Header = () => {
   const { itemCount, setIsOpen: setCartOpen } = useCart();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState(null);
+  // --- CHANGE START: Corrected the TypeScript error ---
+  // We explicitly tell TypeScript this state can be a 'string' OR 'null'
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  // --- CHANGE END ---
 
   return (
     <>
@@ -85,7 +88,7 @@ const Header = () => {
               <Image src="/exsurion-logo.svg" alt="Logo" width={100} height={100} className='h-16 w-full object-cover' />
             </Link>
 
-            {/* --- CHANGE START: Desktop Navigation logic updated for bold on hover --- */}
+            {/* Desktop Navigation logic updated for bold on hover */}
             <nav 
               className="hidden lg:flex items-center space-x-8 ml-8"
               onMouseLeave={() => setHoveredLink(null)} // Clear hover state when mouse leaves nav
@@ -95,7 +98,7 @@ const Header = () => {
                   key={item.name}
                   href={item.href}
                   className="relative text-lg" // Base styles
-                  onMouseEnter={() => setHoveredLink(item.name)}
+                  onMouseEnter={() => setHoveredLink(item.name)} // This line now works
                 >
                   {/* This span now controls the font-weight and color based on hover state */}
                   <span 
@@ -121,7 +124,6 @@ const Header = () => {
                 </Link>
               ))}
             </nav>
-            {/* --- CHANGE END --- */}
 
             {/* Search - Desktop */}
             <Suspense fallback={<div className="hidden md:block w-64 lg:w-80" />}>
@@ -192,9 +194,7 @@ const Header = () => {
                     <Link 
                       key={item.href}
                       href={item.href} 
-                      // --- CHANGE START: Changed font-bold to font-medium and added hover:font-bold ---
                       className="px-4 py-2 text-base font-medium hover:font-bold hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                      // --- CHANGE END ---
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {item.name}
@@ -205,10 +205,8 @@ const Header = () => {
             )}
           </AnimatePresence>
         </div>
-        
-        
       </header>
-                  
+
       <CartDrawer />
       <CategoriesSheet isOpen={isCategoriesOpen} onClose={() => setIsCategoriesOpen(false)} />
     </>
