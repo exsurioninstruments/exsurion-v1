@@ -89,7 +89,7 @@ const useTypewriter = (text: string, speed = 30) => {
   return displayedText
 }
 
-// --- VARIANT DEFINITIONS ---
+// --- VARIANT DEFINITIONS ----
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
