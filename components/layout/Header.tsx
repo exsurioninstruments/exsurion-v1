@@ -205,8 +205,10 @@ const Header = () => {
             )}
           </AnimatePresence>
         </div>
+        
+        
       </header>
-
+                  
       <CartDrawer />
       <CategoriesSheet isOpen={isCategoriesOpen} onClose={() => setIsCategoriesOpen(false)} />
     </>

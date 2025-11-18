@@ -538,6 +538,7 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
+            
             Together, We Shape the Future
           </motion.h2>
           <motion.p
