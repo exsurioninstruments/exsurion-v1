@@ -312,7 +312,7 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            Our People — The Power Behind Exsurion
+            Our People The Power Behind Exsurion
           </motion.h1>
           <motion.p
             className="text-xl text-foreground/70 leading-relaxed mb-8"

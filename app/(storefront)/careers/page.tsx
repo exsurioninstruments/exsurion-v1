@@ -124,7 +124,7 @@ const CareerPage = () => {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                Join Us — Shape the Future of Dental Excellence
+                Join Us Shape the Future of Dental Excellence
               </motion.h1>
 
               <motion.p
@@ -136,7 +136,7 @@ const CareerPage = () => {
               >
                 Our people are our greatest asset at Exsurion Instruments. We are a group of engineers, designers, strategists,
                 and dentists dedicated to creating precision-made dental instruments that are the best in the world.Each one of
-                us brings specialized knowledge, imagination, and dedication — and we are constantly on the lookout for talented,
+                us brings specialized knowledge, imagination, and dedication and we are constantly on the lookout for talented,
                   ambitious individuals to add to our team
               </motion.p>
             </motion.div>
@@ -169,7 +169,7 @@ const CareerPage = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Why Work With Us?</h2>
             <div className="w-20 h-1 bg-accent rounded-full mx-auto mb-4" />
             <p className="text-lg text-foreground/60">
-              We offer more than just a job — we offer a career with purpose and impact.
+              We offer more than just a job we offer a career with purpose and impact.
             </p>
           </motion.div>
 

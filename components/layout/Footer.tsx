@@ -239,8 +239,8 @@ const Footer = () => {
                 <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center">
                   <span className="text-xs font-bold text-black">GF</span>
                 </div>
-                <div className="text-xs font-bold text-black">
-                  <div>GoodFirms</div>
+                <div className="text-xs font-bold text-white">
+                  <div>  Exsurion</div>
                   <div className="bg-green-600 text-white px-2 py-1 rounded text-xs">VERIFIED</div>
                 </div>
               </div>

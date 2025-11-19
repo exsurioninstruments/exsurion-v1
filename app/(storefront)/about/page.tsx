@@ -196,7 +196,7 @@ const AboutPage = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="text-4xl md:text-5xl  font-bold text-foreground mb-6">Our People — The Heart of Exsurion</h2>
+            <h2 className="text-4xl md:text-5xl  font-bold text-foreground mb-6">Our People The Heart of Exsurion</h2>
             <p className="text-lg text-foreground/70 leading-relaxed max-w-2xl mx-auto">
                 Our people are our biggest asset. Engineers, designers, strategists, and dental professionals collaborate
               to develop innovative dental solutions. From initial idea to last product, our individuals implement passion,
@@ -264,7 +264,7 @@ const AboutPage = () => {
             viewport={{ once: true, margin: "-100px" }}
           >
             <p className="text-xl  italic">
-              Exsurion Instruments — Precision You Can Trust, Innovation You Can Rely On
+              Exsurion Instruments Precision You Can Trust, Innovation You Can Rely On
             </p>
           </motion.div>
         </div>
