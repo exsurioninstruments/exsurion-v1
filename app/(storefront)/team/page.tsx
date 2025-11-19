@@ -1,11 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, Variants } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import Image from "next/image"
-
-type Props = {}
 
 const teamMembers = [
   {
@@ -90,7 +87,7 @@ const useTypewriter = (text: string, speed = 30) => {
 }
 
 // --- VARIANT DEFINITIONS ----
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -101,41 +98,37 @@ const containerVariants = {
   },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" as const },
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 }
 
 // --- TEAM MEMBER CARD COMPONENT ---
 type TeamMemberCardProps = {
   member: (typeof teamMembers)[0]
+  isRevealed: boolean
+  onToggle: () => void
 }
 
-const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
-  const [isRevealed, setIsRevealed] = useState(false)
+const TeamMemberCard = ({ member, isRevealed, onToggle }: TeamMemberCardProps) => {
   const typedDescription = useTypewriter(
     isRevealed ? member.description : "",
-    30 // Typing speed in ms
+    30
   )
 
-  const handleClick = () => {
-    setIsRevealed(true) // Only reveal, don't toggle
-  }
-
-  // --- NEW VARIANTS for overlay and text ---
-  const overlayVariants = {
+  const overlayVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.3, staggerChildren: 0.1 }, // Stagger children
+      transition: { duration: 0.3, staggerChildren: 0.1 },
     },
   }
 
-  const textVariants = {
+  const textVariants: Variants = {
     hidden: { opacity: 0, y: 10 },
     visible: {
       opacity: 1,
@@ -149,44 +142,48 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
       variants={itemVariants}
       className="group relative"
       whileHover={{ y: -8 }}
-      onClick={handleClick}
+      onClick={onToggle}
+      style={{
+        gridRow: isRevealed ? 'span 2' : 'span 1'
+      }}
     >
       {/* Card Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all opacity-0 group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-transparent rounded-2xl blur-xl group-hover:blur-2xl transition-all opacity-0 group-hover:opacity-100" />
 
       {/* Card */}
-      <div className="relative bg-card rounded-2xl overflow-hidden border border-border/50 hover:border-accent/50 transition-all h-full flex flex-col cursor-pointer">
+      <div className="relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 transition-all h-full flex flex-col cursor-pointer">
         {/* Image Container with Overlay */}
-        <div className="relative h-83 overflow-hidden bg-gradient-to-br from-accent/10 to-primary/10">
-          <Image
-            src={member.image || "/background.png"}
+        <div className="relative h-80 overflow-hidden bg-gradient-to-br from-blue-500/10 to-purple-500/10">
+          <img
+            src={member.image || "https://via.placeholder.com/400x400?text=Team+Member"}
             alt={member.name}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            width={1000}
-            height={1000}
           />
-          {/* --- MODIFIED OVERLAY --- */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end p-6"
-            initial="hidden"
-            whileHover="visible"
-            animate={isRevealed ? "hidden" : "hidden"} // Hide overlay after click
-            variants={overlayVariants} // Apply overlay variants
-          >
-            {/* --- MODIFIED TEXT --- */}
-            <motion.p
-              className="text-sm font-bold text-white mb-2" // <-- UPDATED CLASSES
-              variants={textVariants} // Apply text variants
-            >
-              Click to view details
-            </motion.p>
-          </motion.div>
+          {/* Overlay - only show when NOT revealed */}
+          <AnimatePresence>
+            {!isRevealed && (
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-end p-6"
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={overlayVariants}
+              >
+                <motion.p
+                  className="text-sm font-bold text-white mb-2"
+                  variants={textVariants}
+                >
+                  Click to view details
+                </motion.p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
 
         {/* Content */}
         <div className="p-6 flex-1 flex flex-col">
           <motion.h3
-            className="text-2xl font-semibold text-foreground mb-1"
+            className="text-2xl font-semibold text-gray-900 dark:text-white mb-1"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
@@ -195,7 +192,7 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
             {member.name}
           </motion.h3>
           <motion.p
-            className="text-sm font-medium mb-4"
+            className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.15 }}
@@ -204,7 +201,7 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
             {member.role}
           </motion.p>
 
-          {/* --- CLICK-TO-REVEAL CONTENT --- */}
+          {/* Click-to-Reveal Content */}
           <AnimatePresence>
             {isRevealed && (
               <motion.div
@@ -212,14 +209,11 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 transition={{ duration: 0.5 }}
-                className="flex-1 flex flex-col" // Use flex to manage layout
+                className="flex-1 flex flex-col"
               >
-                <motion.p
-                  className="text-foreground/70 leading-relaxed mb-6 flex-1" // flex-1 to take up space
-                >
+                <motion.p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 flex-1">
                   {typedDescription}
-                  {/* Blinking cursor (requires tailwind.config.js setup) */}
-                  <span className="animate-blink">|</span>
+                  <span className="animate-pulse">|</span>
                 </motion.p>
 
                 {/* Expertise Tags */}
@@ -232,11 +226,9 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
                   {member.expertise.map((skill) => (
                     <motion.span
                       key={skill}
-                      className="text-xs px-3 py-1 bg-white/10 rounded-full border border-accent/20 hover:border-accent/50 transition-all"
+                      className="text-xs px-3 py-1 bg-blue-100 dark:bg-blue-900/30 rounded-full border border-blue-200 dark:border-blue-500/20 hover:border-blue-500 transition-all text-blue-700 dark:text-blue-300"
                       whileHover={{
                         scale: 1.05,
-                        backgroundColor: "var(--accent)",
-                        color: "var(--accent-foreground)",
                       }}
                     >
                       {skill}
@@ -253,9 +245,10 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
 }
 
 // --- MAIN TEAMS PAGE COMPONENT ---
-const TeamsPage = (props: Props) => {
+const TeamsPage = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [direction, setDirection] = useState(0)
+  const [revealedCards, setRevealedCards] = useState<Set<number>>(new Set())
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -289,24 +282,35 @@ const TeamsPage = (props: Props) => {
     )
   }
 
+  const toggleCardReveal = (memberId: number) => {
+    setRevealedCards((prev) => {
+      const newSet = new Set<number>()
+      // If clicking the same card, close it. Otherwise, open only the clicked card
+      if (!prev.has(memberId)) {
+        newSet.add(memberId)
+      }
+      return newSet
+    })
+  }
+
   return (
-    <main>
-      {/* Hero Section (Unchanged) */}
-      <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-primary/5 to-background relative overflow-hidden">
+    <main className="bg-gray-50 dark:bg-gray-950">
+      {/* Hero Section */}
+      <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-blue-50/50 to-white dark:from-blue-950/20 dark:to-gray-950 relative overflow-hidden">
         <motion.div
-          className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"
+          className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
           animate={{ y: [0, 30, 0] }}
-          transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY }}
+          transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+          className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"
           animate={{ y: [0, -30, 0] }}
-          transition={{ duration: 8, repeat: Number.POSITIVE_INFINITY, delay: 1 }}
+          transition={{ duration: 8, repeat: Infinity, delay: 1 }}
         />
 
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.h1
-            className="text-5xl md:text-6xl font-bold text-foreground mb-6 text-balance"
+            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -315,7 +319,7 @@ const TeamsPage = (props: Props) => {
             Our People The Power Behind Exsurion
           </motion.h1>
           <motion.p
-            className="text-xl text-foreground/70 leading-relaxed mb-8"
+            className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -327,7 +331,7 @@ const TeamsPage = (props: Props) => {
             confidence
           </motion.p>
           <motion.p
-            className="text-lg text-foreground/60 leading-relaxed"
+            className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -341,8 +345,8 @@ const TeamsPage = (props: Props) => {
         </div>
       </section>
 
-      {/* Infinite Carousel Section (Unchanged) */}
-      <section className="py-20 md:py-28 px-4 md:px-8 bg-background">
+      {/* Carousel Section */}
+      <section className="py-20 md:py-28 px-4 md:px-8 bg-white dark:bg-gray-950">
         <div className="max-w-6xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -351,11 +355,11 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               Meet Our Leadership
             </h2>
-            <div className="w-20 h-1 bg-accent rounded-full mx-auto mb-4" />
-            <p className="text-lg text-foreground/60">
+            <div className="w-20 h-1 bg-blue-500 rounded-full mx-auto mb-4" />
+            <p className="text-lg text-gray-600 dark:text-gray-400">
               Driven by precision and passion, our team continues to innovate
               and refine.
             </p>
@@ -380,16 +384,14 @@ const TeamsPage = (props: Props) => {
                 <div className="grid md:grid-cols-2 gap-8 h-full items-center px-4 md:px-8">
                   {/* Image Side */}
                   <motion.div
-                    className="relative h-full rounded-2xl overflow-hidden border-2 border-accent/30 shadow-2xl"
+                    className="relative h-full rounded-2xl overflow-hidden border-2 border-blue-500/30 shadow-2xl"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Image
-                      src={teamMembers[currentIndex].image || "/background.png"}
+                    <img
+                      src={teamMembers[currentIndex].image || "https://via.placeholder.com/600x600?text=Team+Member"}
                       alt={teamMembers[currentIndex].name}
                       className="w-full h-full object-cover"
-                      width={1000}
-                      height={1000}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
                   </motion.div>
@@ -403,7 +405,7 @@ const TeamsPage = (props: Props) => {
                   >
                     <div>
                       <motion.h3
-                        className="text-4xl font-bold text-foreground mb-2"
+                        className="text-4xl font-bold text-gray-900 dark:text-white mb-2"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
@@ -411,7 +413,7 @@ const TeamsPage = (props: Props) => {
                         {teamMembers[currentIndex].name}
                       </motion.h3>
                       <motion.p
-                        className="text-xl font-semibold mb-4"
+                        className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
@@ -421,7 +423,7 @@ const TeamsPage = (props: Props) => {
                     </div>
 
                     <motion.p
-                      className="text-lg text-foreground/70 leading-relaxed"
+                      className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.5 }}
@@ -435,13 +437,12 @@ const TeamsPage = (props: Props) => {
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.6 }}
                     >
-                      {teamMembers[currentIndex].expertise.map((skill, idx) => (
+                      {teamMembers[currentIndex].expertise.map((skill) => (
                         <motion.span
                           key={skill}
-                          className="px-4 py-2 bg-white/10  rounded-full text-sm font-medium border border-accent/30"
+                          className="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-sm font-medium border border-blue-200 dark:border-blue-500/30 text-blue-700 dark:text-blue-300"
                           whileHover={{
                             scale: 1.05,
-                            backgroundColor: "var(--accent)",
                           }}
                           transition={{ duration: 0.2 }}
                         >
@@ -457,7 +458,7 @@ const TeamsPage = (props: Props) => {
             {/* Navigation Buttons */}
             <motion.button
               onClick={() => paginate(-1)}
-              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-accent/20 hover:bg-accent/40 text-foreground transition-all border border-accent/30"
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-blue-500/20 hover:bg-blue-500/40 text-gray-900 dark:text-white transition-all border border-blue-500/30"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -466,7 +467,7 @@ const TeamsPage = (props: Props) => {
 
             <motion.button
               onClick={() => paginate(1)}
-              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-accent/20 hover:bg-accent/40 text-foreground transition-all border border-accent/30"
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-blue-500/20 hover:bg-blue-500/40 text-gray-900 dark:text-white transition-all border border-blue-500/30"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -494,8 +495,8 @@ const TeamsPage = (props: Props) => {
         </div>
       </section>
 
-      {/* --- MODIFIED Grid View Section --- */}
-      <section className="py-20 md:py-28 px-4 md:px-8 bg-secondary/5">
+      {/* Grid View Section */}
+      <section className="py-20 md:py-28 px-4 md:px-8 bg-gray-50 dark:bg-gray-900/50">
         <div className="max-w-6xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -504,10 +505,10 @@ const TeamsPage = (props: Props) => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
               Full Team Overview
             </h2>
-            <div className="w-20 h-1 bg-accent rounded-full mx-auto" />
+            <div className="w-20 h-1 bg-blue-500 rounded-full mx-auto" />
           </motion.div>
 
           <motion.div
@@ -516,33 +517,40 @@ const TeamsPage = (props: Props) => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
+            style={{
+              gridAutoRows: 'auto'
+            }}
           >
             {teamMembers.map((member) => (
-              <TeamMemberCard key={member.id} member={member} />
+              <TeamMemberCard
+                key={member.id}
+                member={member}
+                isRevealed={revealedCards.has(member.id)}
+                onToggle={() => toggleCardReveal(member.id)}
+              />
             ))}
           </motion.div>
         </div>
       </section>
 
-      {/* Closing Section (Unchanged) */}
+      {/* Closing Section */}
       <section
-        className="py-20 md:py-28 px-4 md:px-8 bg-primary/5 bg-cover bg-center bg-no-repeat relative"
+        className="py-20 md:py-28 px-4 md:px-8 bg-blue-950/90 bg-cover bg-center bg-no-repeat relative"
         style={{ backgroundImage: "url('/join-us.jpg')" }}
       >
         <div className="absolute inset-0 bg-black/50" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
           <motion.h2
-            className="text-4xl md:text-5xl font-bold text-foreground mb-8"
+            className="text-4xl md:text-5xl font-bold text-white mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            
             Together, We Shape the Future
           </motion.h2>
           <motion.p
-            className="text-xl text-foreground/70 leading-relaxed"
+            className="text-xl text-gray-200 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
