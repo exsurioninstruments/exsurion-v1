@@ -57,7 +57,7 @@ export function CategorySection() {
             <Button
             size="lg"
             variant="secondary"
-            className="bg-white text-black hover:bg-gray-100 rounded-lg font-medium cursor-pointer mt-4"
+            className="bg-gradient-to-r from-stone-100 to-orange-200 text-gray-800 hover:from-stone-200 hover:to-orange-300 ring-gray-400 rounded-lg font-medium cursor-pointer mt-4"
           >
             Explore →
           </Button>

@@ -68,16 +68,44 @@ export default function ServicesExpertise() {
 
         {/* Call to action buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button
-            variant="outline"
-            size="lg"
+          <Button 
+            size="lg" 
+            className="relative group overflow-hidden bg-transparent border border-white text-white hover:text-gray-800 hover:border-transparent hover:bg-transparent"
           >
-            Explore What We Do
-            <ArrowRight className="w-4 h-4 ml-2" />
+            {/* Sliding Background */}
+            <span className="absolute inset-0 z-0 bg-gradient-to-r from-stone-100 to-orange-200
+              scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-in-out" />
+            
+            {/* Text and Icon (z-10 ensures it sits on top of the background) */}
+            <span className="relative z-10 flex items-center gap-2">
+              Explore What We Do 
+              <ArrowRight className="w-4 h-4" />
+            </span>
           </Button>
-          <Button size="lg" className=" font-medium">
-            Get in Touch
-            <ArrowRight className="w-4 h-4 ml-2" />
+          <Button 
+            size="lg" 
+            className="
+              relative group overflow-hidden 
+              bg-transparent border border-white text-white
+              hover:text-gray-800 hover:border-stone-200
+              transition-colors duration-300
+            "
+          >
+            {/* The Gradient Background (Hidden by default, slides in on hover) */}
+            <span 
+              className="
+                absolute inset-0 z-0 
+                bg-gradient-to-r from-stone-100 to-orange-200 
+                scale-x-0 origin-left group-hover:scale-x-100 
+                transition-transform duration-300 ease-in-out
+              " 
+            />
+
+            {/* The Text content (z-10 keeps it on top of the gradient) */}
+            <span className="relative z-10 flex items-center">
+              Get in Touch
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </span>
           </Button>
         </div>
       </div>

@@ -326,7 +326,7 @@ const CareerPage = () => {
               </p>
               <motion.a
                 href="mailto:careers@exsurion.com"
-                className="inline-block px-8 py-4 bg-white text-primary-foreground font-semibold rounded-lg hover:bg-primary/90 transition-colors border border-primary/50"
+                className="inline-block px-8 py-4 font-semibold rounded-lg transition-colors bg-gradient-to-r from-stone-100 to-orange-200 text-gray-800 hover:from-stone-200 hover:to-orange-300 ring-1 ring-gray-400"
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 25px rgba(0,0,0,0.15)" }}
                 whileTap={{ scale: 0.98 }}
               >
