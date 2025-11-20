@@ -132,8 +132,8 @@ const AboutPage = () => {
             >
               <div className="space-y-6">
                 <div>
-                  <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-4">Our Mission</h2>
-                  <div className="w-16 h-1 bg-primary rounded-full mb-8" />
+                  <h2 className="text-5xl md:text-6xl font-bold text-foreground w-full border-b-4 border-primary pb-4 mb-8">Ourbur Mission</h2>
+                  
                 </div>
                 <p className="text-lg md:text-xl text-foreground/75 leading-relaxed">
                   To promote dental healthcare worldwide by providing instruments that unite precision, longevity, and 
