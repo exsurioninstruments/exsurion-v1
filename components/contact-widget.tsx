@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useStoreSettings } from "@/lib/sanity/hooks"
 import { Input } from "./ui/input"
 import { Textarea } from "./ui/textarea"
@@ -17,11 +17,14 @@ export function ContactWidget() {
   const { itemCount, setIsOpen: setCartOpen } = useCart()
   const [isSidebarHidden, setIsSidebarHidden] = useState(false)
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
+  const [isFormOpen, setIsFormOpen] = useState(false)
   const [showChatModal, setShowChatModal] = useState(false)
   const [showTooltip, setShowTooltip] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
   const [submitSuccess, setSubmitSuccess] = useState(false)
+  const formRef = useRef<HTMLDivElement>(null)
+  const formContainerRef = useRef<HTMLDivElement>(null)
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -46,6 +49,30 @@ export function ContactWidget() {
       clearInterval(interval)
     }
   }, [])
+
+  // Handle clicks outside the form to close it
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isFormOpen &&
+        formRef.current &&
+        formContainerRef.current &&
+        !formRef.current.contains(event.target as Node) &&
+        !formContainerRef.current.contains(event.target as Node)
+      ) {
+        setIsFormOpen(false)
+        setHoveredItem(null)
+      }
+    }
+
+    if (isFormOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isFormOpen])
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -83,7 +110,6 @@ export function ContactWidget() {
 
       setSubmitSuccess(true)
       setFormData({ name: "", phone: "", email: "", message: "" })
-      setHoveredItem(null)
       
       // Reset success message after 3 seconds
       setTimeout(() => setSubmitSuccess(false), 3000)
@@ -143,9 +169,23 @@ export function ContactWidget() {
       >
         {/* Contact Tab - CONTACT US Form Slide Out */}
         <div 
-          onMouseEnter={() => setHoveredItem("form")} 
-          onMouseLeave={() => setHoveredItem(null)} 
-          onClick={() => setHoveredItem(hoveredItem === "form" ? null : "form")}
+          ref={formContainerRef}
+          onMouseEnter={() => {
+            setHoveredItem("form")
+          }}
+          onMouseLeave={() => {
+            if (!isFormOpen) {
+              setHoveredItem(null)
+            }
+          }}
+          onClick={() => {
+            setIsFormOpen(!isFormOpen)
+            if (!isFormOpen) {
+              setHoveredItem("form")
+            } else {
+              setHoveredItem(null)
+            }
+          }}
           className="relative"
         >
           <div className="bg-gray-100 text-white w-12 h-28 sm:w-14 sm:h-32 md:w-16 md:h-36 lg:w-16 lg:h-40 cursor-pointer flex flex-col items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 hover:bg-gray-300 active:bg-gray-400 transition-all rounded-tl-xl sm:rounded-tl-2xl">
@@ -158,8 +198,24 @@ export function ContactWidget() {
           </div>
 
           <div
+            ref={formRef}
+            onMouseEnter={() => {
+              setHoveredItem("form")
+              setIsFormOpen(true)
+            }}
+            onMouseLeave={() => {
+              // Don't close if form is pinned open
+              if (!isFormOpen) {
+                setHoveredItem(null)
+              }
+            }}
+            onClick={(e) => {
+              e.stopPropagation()
+              setIsFormOpen(true)
+              setHoveredItem("form")
+            }}
             className={`absolute right-12 sm:right-16 md:right-20 top-0 w-[calc(100vw-4rem)] sm:w-80 md:w-96 max-w-[calc(100vw-2rem)] sm:max-w-none bg-white rounded-l-xl sm:rounded-l-2xl shadow-2xl transition-all duration-300 origin-right ${
-              hoveredItem === "form" ? "opacity-100 translate-x-0" : "opacity-0 translate-x-full sm:translate-x-96 pointer-events-none"
+              (hoveredItem === "form" || isFormOpen) ? "opacity-100 translate-x-0 pointer-events-auto" : "opacity-0 translate-x-full sm:translate-x-96 pointer-events-none"
             }`}
           >
             <div className="p-4 sm:p-6 md:p-8">
@@ -168,7 +224,19 @@ export function ContactWidget() {
                 <p className="text-xs sm:text-sm text-gray-600">We endeavour to answer all enquiries within 24 hours</p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
+              <form 
+                onSubmit={handleSubmit} 
+                className="space-y-3 sm:space-y-4"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setIsFormOpen(true)
+                  setHoveredItem("form")
+                }}
+                onFocus={() => {
+                  setIsFormOpen(true)
+                  setHoveredItem("form")
+                }}
+              >
                 <div>
                   <Input
                     type="text"
@@ -176,6 +244,15 @@ export function ContactWidget() {
                     placeholder="Name*"
                     value={formData.name}
                     onChange={handleFormChange}
+                    onFocus={() => {
+                      setIsFormOpen(true)
+                      setHoveredItem("form")
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setIsFormOpen(true)
+                      setHoveredItem("form")
+                    }}
                     required
                     disabled={isSubmitting}
                     className="w-full px-4 sm:px-5 py-2.5 sm:py-3 border-2 border-gray-300 rounded-2xl sm:rounded-3xl text-sm text-black focus:outline-none focus:border-purple-500 transition-colors disabled:opacity-50"
@@ -189,6 +266,15 @@ export function ContactWidget() {
                     placeholder="Phone*"
                     value={formData.phone}
                     onChange={handleFormChange}
+                    onFocus={() => {
+                      setIsFormOpen(true)
+                      setHoveredItem("form")
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setIsFormOpen(true)
+                      setHoveredItem("form")
+                    }}
                     required
                     disabled={isSubmitting}
                     className="w-full px-4 sm:px-5 py-2.5 sm:py-3 border-2 border-gray-300 rounded-2xl sm:rounded-3xl text-sm text-black focus:outline-none focus:border-purple-500 transition-colors disabled:opacity-50"
@@ -202,6 +288,15 @@ export function ContactWidget() {
                     placeholder="Email*"
                     value={formData.email}
                     onChange={handleFormChange}
+                    onFocus={() => {
+                      setIsFormOpen(true)
+                      setHoveredItem("form")
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setIsFormOpen(true)
+                      setHoveredItem("form")
+                    }}
                     required
                     disabled={isSubmitting}
                     className="w-full px-4 sm:px-5 py-2.5 sm:py-3 border-2 border-gray-300 rounded-2xl sm:rounded-3xl text-sm text-black focus:outline-none focus:border-purple-500 transition-colors disabled:opacity-50"
@@ -214,6 +309,15 @@ export function ContactWidget() {
                     placeholder="Message"
                     value={formData.message}
                     onChange={handleFormChange}
+                    onFocus={() => {
+                      setIsFormOpen(true)
+                      setHoveredItem("form")
+                    }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setIsFormOpen(true)
+                      setHoveredItem("form")
+                    }}
                     rows={4}
                     disabled={isSubmitting}
                     className="w-full px-4 sm:px-5 py-2.5 sm:py-3 border-2 border-gray-300 rounded-xl sm:rounded-2xl text-sm text-black focus:outline-none focus:border-purple-500 transition-colors resize-none disabled:opacity-50"
@@ -235,6 +339,15 @@ export function ContactWidget() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    setIsFormOpen(true)
+                    setHoveredItem("form")
+                  }}
+                  onFocus={() => {
+                    setIsFormOpen(true)
+                    setHoveredItem("form")
+                  }}
                   className="w-full bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white font-semibold py-2.5 sm:py-3 rounded-2xl sm:rounded-3xl transition-all transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-sm sm:text-base"
                 >
                   {isSubmitting ? "Sending..." : "Send Message"}
