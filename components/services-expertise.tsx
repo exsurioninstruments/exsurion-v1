@@ -16,15 +16,15 @@ export default function ServicesExpertise() {
   ]
 
   return (
-    <section className=" py-16 px-4">
+    <section className="py-12 sm:py-14 md:py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Certification badges */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-10 md:mb-12">
           {certifications.map((cert, index) => (
             <Badge
               key={index}
               variant="secondary"
-              className="bg-gradient-to-r from-stone-100 to-orange-200 text-gray-800 hover:from-stone-200 hover:to-orange-300 px-2 py-1 text-xs font-medium rounded-full transition-all duration-300"
+              className="bg-gradient-to-r from-stone-100 to-orange-200 text-gray-800 hover:from-stone-200 hover:to-orange-300 px-2 sm:px-3 py-1 text-[10px] sm:text-xs font-medium rounded-full transition-all duration-300"
             >
               {cert}
             </Badge>
@@ -32,11 +32,11 @@ export default function ServicesExpertise() {
         </div>
 
         {/* Main heading */}
-        <div className="text-center mb-12">
-          <h1 className="text-2xl md:text-5xl lg:text-6xl font-medium mb-6 text-balance">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 px-2 sm:px-0">
+          <h1 className="text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-medium mb-4 sm:mb-5 md:mb-6 text-balance">
             All-in-One Product Design, Engineering & Software Development Expertise
           </h1>
-          <p className="md:text-xl text-gray-300 max-w-4xl mx-auto text-pretty">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 max-w-4xl mx-auto text-pretty">
             Our multidisciplinary team turns your ideas into market-ready innovations. Guided by structured and
             compliant processes, we ensure a smooth, end-to-end development journey from concept to launch.
           </p>
@@ -44,42 +44,42 @@ export default function ServicesExpertise() {
 
 
         {/* Stats section */}
-        <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-16 mb-12">
+        <div className="flex flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-16 mb-8 sm:mb-10 md:mb-12">
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
-              <div className="text-2xl md:text-5xl font-normal mb-2">{stat.number}</div>
-              <div className="text-sm md:text-sm text-gray-400 max-w-32 text-balance">{stat.label}</div>
+              <div className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-normal mb-1 sm:mb-2">{stat.number}</div>
+              <div className="text-xs sm:text-sm text-gray-400 max-w-24 sm:max-w-32 text-balance">{stat.label}</div>
             </div>
           ))}
 
           {/* BSI Certification badge */}
           <div className="flex items-center">
-            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center">
-              <div className="text-black text-xs font-bold text-center">
-                <div>Exsursion</div>
-                <div className="text-[8px]">Best</div>
-                <div className="text-[8px]">Quality</div>
-                <div className="text-[8px]">Management</div>
-                <div className="text-[8px]">CERTIFIED</div>
+            <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-20 md:h-20 bg-white rounded-full flex items-center justify-center">
+              <div className="text-black text-[10px] sm:text-xs font-bold text-center">
+                <div className="text-[8px] sm:text-[10px]">Exsursion</div>
+                <div className="text-[6px] sm:text-[8px]">Best</div>
+                <div className="text-[6px] sm:text-[8px]">Quality</div>
+                <div className="text-[6px] sm:text-[8px]">Management</div>
+                <div className="text-[6px] sm:text-[8px]">CERTIFIED</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Call to action buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
           <Button 
             size="lg" 
-            className="relative group overflow-hidden bg-transparent border border-white text-white hover:text-gray-800 hover:border-transparent hover:bg-transparent"
+            className="relative group overflow-hidden bg-transparent border border-white text-white hover:text-gray-800 hover:border-transparent hover:bg-transparent w-full sm:w-auto text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3"
           >
             {/* Sliding Background */}
             <span className="absolute inset-0 z-0 bg-gradient-to-r from-stone-100 to-orange-200
               scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-in-out" />
             
             {/* Text and Icon (z-10 ensures it sits on top of the background) */}
-            <span className="relative z-10 flex items-center gap-2">
+            <span className="relative z-10 flex items-center gap-2 justify-center">
               Explore What We Do 
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
             </span>
           </Button>
           <Button 
@@ -89,6 +89,7 @@ export default function ServicesExpertise() {
               bg-transparent border border-white text-white
               hover:text-gray-800 hover:border-stone-200
               transition-colors duration-300
+              w-full sm:w-auto text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3
             "
           >
             {/* The Gradient Background (Hidden by default, slides in on hover) */}
@@ -102,9 +103,9 @@ export default function ServicesExpertise() {
             />
 
             {/* The Text content (z-10 keeps it on top of the gradient) */}
-            <span className="relative z-10 flex items-center">
+            <span className="relative z-10 flex items-center justify-center">
               Get in Touch
-              <ArrowRight className="w-4 h-4 ml-2" />
+              <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4 ml-1 sm:ml-2" />
             </span>
           </Button>
         </div>

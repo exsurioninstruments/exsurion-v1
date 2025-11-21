@@ -93,14 +93,14 @@ export default function ContactPage() {
       </div>
 
       <motion.div
-        className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20"
+        className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-20"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
       >
         {/* Breadcrumb */}
         <motion.div
-          className="flex items-center space-x-2 text-sm text-muted-foreground mb-8"
+          className="flex items-center space-x-2 text-xs sm:text-sm text-muted-foreground mb-6 sm:mb-8"
           variants={itemVariants}
         >
           <Link href="/" className="hover:text-foreground transition-colors">
@@ -113,19 +113,19 @@ export default function ContactPage() {
         <div className="max-w-4xl mx-auto">
           {/* Header Section */}
           <motion.div
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-10 md:mb-12 px-2 sm:px-0"
             variants={itemVariants}
           >
             <motion.div
-              className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-primary to-primary/80 mb-6"
+              className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-r from-primary to-primary/80 mb-4 sm:mb-5 md:mb-6"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
             >
-              <Mail className="w-8 h-8 text-primary-foreground" />
+              <Mail className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary-foreground" />
             </motion.div>
             <motion.h1
-              className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
@@ -133,7 +133,7 @@ export default function ContactPage() {
               Get in Touch
             </motion.h1>
             <motion.p
-              className="text-lg text-muted-foreground max-w-2xl mx-auto"
+              className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}
@@ -145,7 +145,7 @@ export default function ContactPage() {
 
           {/* Contact Form */}
           <motion.div
-            className="bg-gradient-to-br from-card via-card to-card/50 border-2 border-border/50 rounded-3xl p-8 lg:p-12 shadow-2xl backdrop-blur-sm"
+            className="bg-gradient-to-br from-card via-card to-card/50 border-2 border-border/50 rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-12 shadow-2xl backdrop-blur-sm"
             variants={itemVariants}
           >
             {submitStatus === 'success' ? (
@@ -285,46 +285,46 @@ export default function ContactPage() {
 
           {/* Additional Info */}
           <motion.div
-            className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
+            className="mt-8 sm:mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6"
             variants={itemVariants}
           >
             <motion.div
-              className="text-center p-6 rounded-xl bg-card/50 border border-border/50"
+              className="text-center p-4 sm:p-5 md:p-6 rounded-xl bg-card/50 border border-border/50"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.4 }}
             >
-              <Mail className="w-8 h-8 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold mb-2">Email Us</h3>
-              <p className="text-sm text-white">
+              <Mail className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-primary mx-auto mb-2 sm:mb-3" />
+              <h3 className="text-sm sm:text-base font-semibold mb-1 sm:mb-2">Email Us</h3>
+              <p className="text-xs sm:text-sm text-white">
                 {process.env.GMAIL_USER || 'exsurion.instruments@gmail.com'}
               </p>
             </motion.div>
             <motion.div
-              className="text-center p-6 rounded-xl bg-card/50 border border-border/50"
+              className="text-center p-4 sm:p-5 md:p-6 rounded-xl bg-card/50 border border-border/50"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.1, duration: 0.4 }}
             >
-              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                <span className="text-primary font-bold">24/7</span>
+              <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                <span className="text-primary font-bold text-xs sm:text-sm">24/7</span>
               </div>
-              <h3 className="font-semibold mb-2">Support</h3>
-              <p className="text-sm text-white">
+              <h3 className="text-sm sm:text-base font-semibold mb-1 sm:mb-2">Support</h3>
+              <p className="text-xs sm:text-sm text-white">
                 We&apos;re here to help you anytime
               </p>
             </motion.div>
             <motion.div
-              className="text-center p-6 rounded-xl bg-card/50 border border-border/50"
+              className="text-center p-4 sm:p-5 md:p-6 rounded-xl bg-card/50 border border-border/50 sm:col-span-2 md:col-span-1"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.2, duration: 0.4 }}
             >
-              <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3">
-                <span className="text-primary font-bold">&lt;24h</span>
+              <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-2 sm:mb-3">
+                <span className="text-primary font-bold text-xs sm:text-sm">&lt;24h</span>
               </div>
-              <h3 className="font-semibold mb-2">Response Time</h3>
-              <p className="text-sm text-white">
+              <h3 className="text-sm sm:text-base font-semibold mb-1 sm:mb-2">Response Time</h3>
+              <p className="text-xs sm:text-sm text-white">
                 We typically respond within 24 hours
               </p>
             </motion.div>

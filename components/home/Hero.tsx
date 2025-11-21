@@ -29,17 +29,17 @@ export function HeroSection() {
   if (loading) {
     return (
       <section className="min-h-screen flex flex-col">
-        <div className="flex-1 flex flex-col items-center justify-center px-6 py-20">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className="h-24 bg-muted animate-pulse rounded" />
-            <div className="h-6 bg-muted animate-pulse rounded max-w-3xl mx-auto" />
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center pt-4">
-              <div className="h-12 w-40 bg-muted animate-pulse rounded" />
-              <div className="h-6 w-32 bg-muted animate-pulse rounded" />
+        <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20">
+          <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
+            <div className="h-16 sm:h-20 md:h-24 bg-muted animate-pulse rounded" />
+            <div className="h-4 sm:h-5 md:h-6 bg-muted animate-pulse rounded max-w-3xl mx-auto" />
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center pt-4">
+              <div className="h-10 sm:h-12 w-32 sm:w-40 bg-muted animate-pulse rounded" />
+              <div className="h-8 sm:h-10 w-28 sm:w-32 bg-muted animate-pulse rounded" />
             </div>
           </div>
         </div>
-        <div className="pb-8">
+        <div className="pb-4 sm:pb-6 md:pb-8">
           <InfiniteCarousel />
         </div>
       </section>
@@ -49,9 +49,9 @@ export function HeroSection() {
   return (
     <section className="min-h-screen flex flex-col">
       {/* Main content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 py-20 pt-8">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <h1 className="text-3xl md:text-6xl lg:text-7xl font-light leading-tight text-balance">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 pt-6 sm:pt-8">
+        <div className="max-w-4xl mx-auto text-center space-y-6 sm:space-y-8">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-light leading-tight text-balance">
             {heroContent.headline?.split('\n').map((line: string, index: number) => (
               <span key={index}>
                 {line}
@@ -65,11 +65,11 @@ export function HeroSection() {
             ))}
           </h1>
 
-          <p className="text-base md:text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
             {heroContent.description || fallbackContent.description}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center pt-4 px-4 sm:px-0">
             <Link href={heroContent.primaryButton?.url || fallbackContent.primaryButton.url}>
               <Button 
                 size="lg" 
@@ -77,9 +77,9 @@ export function HeroSection() {
                   relative group overflow-hidden 
                   bg-black 
                   ring-1 ring-black hover:ring-white 
-                  text-gray-800 hover:text-black /* Text turns white on hover */
-                  px-8 py-3 text-lg font-bold rounded-full 
-                  transition-colors duration-300
+                  text-gray-800 hover:text-black
+                  px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base md:text-lg font-bold rounded-full 
+                  transition-colors duration-300 w-full sm:w-auto
                 "
               >
                 {/* Background Gradient Span:
@@ -102,10 +102,10 @@ export function HeroSection() {
                 </span>
               </Button>
             </Link>
-            <Link href={heroContent.secondaryButton?.url || fallbackContent.secondaryButton.url}>
-              <button className="relative group overflow-hidden transition-colors text-base font-medium 
-              bg-transparent text-lg text-white hover:text-black outline outline-1 outline-white rounded-full 
-              px-5 py-2">
+            <Link href={heroContent.secondaryButton?.url || fallbackContent.secondaryButton.url} className="w-full sm:w-auto">
+              <button className="relative group overflow-hidden transition-colors text-sm sm:text-base font-medium 
+              bg-transparent text-white hover:text-black outline outline-1 outline-white rounded-full 
+              px-4 sm:px-5 py-2 w-full sm:w-auto">
                 {/* Sliding Background Animation */}
                 <span 
                   className="absolute inset-0 z-0 bg-gradient-to-r from-stone-100 to-orange-200 scale-x-0 
@@ -124,7 +124,7 @@ export function HeroSection() {
       </div>
 
       {/* Infinite carousel */}
-      <div className="pb-8">
+      <div className="pb-4 sm:pb-6 md:pb-8">
         <InfiniteCarousel />
       </div>
     </section>

@@ -2,57 +2,7 @@
 
 import Image from "next/image"
 import { motion } from "framer-motion"
-
-
-const leaders = [
-  {
-    name: "M. Yaqoob",
-    role: "CEO",
-    description: "Leads with vision, strategy, and a commitment to global excellence.",
-    image: "/about1.jpg",
-  },
-  {
-    name: "Dr. Faizan Whla",
-    role: "Clinical Advisor",
-    description: "Ensures every instrument meets strict clinical standards.",
-    image: "/about2.jpg",
-  },
-  {
-    name: "M. Shahzaib",
-    role: "Technical Head / AI-ML Engineer",
-    description: "Implements smart digital solutions to enhance operations.",
-    image: "/about3.webp",
-  },
-  {
-    name: "Burhan Zulfiqar",
-    role: "Team Leader",
-    description: "Oversees seamless collaboration and project success.",
-    image: "/about4.avif",
-  },
-  {
-    name: "Areeba Choudhary",
-    role: "Graphic Designer",
-    description: "Crafts visuals that embody precision, trust, and brand identity.",
-    image: "/about5.jpg",
-  },
-]
-
-
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-}
-
-const fadeInScale = {
-  initial: { opacity: 0, scale: 0.95 },
-  animate: { opacity: 1, scale: 1 },
-  transition: { duration: 0.6 },
-}
+import { Button } from "@/components/ui/button"
 
 
 
@@ -61,7 +11,7 @@ const fadeInScale = {
 const AboutPage = () => {
   return (
     <main>
-      <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <Image
           src={"/surgical-instruments-precision-dental-tools.jpg"}
@@ -75,9 +25,9 @@ const AboutPage = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70" />
 
         {/* Content */}
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 md:px-8">
+        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 md:px-8 py-12 sm:py-16 md:py-20">
           <motion.h1
-            className="text-5xl md:text-7xl font-bold text-white mb-6 text-balance leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-5 md:mb-6 text-balance leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -85,7 +35,7 @@ const AboutPage = () => {
             Precision You Can Trust
           </motion.h1>
           <motion.p
-            className="text-2xl md:text-3xl text-white/90 font-light mb-8 text-balance"
+            className="text-xl sm:text-2xl md:text-3xl text-white/90 font-light mb-6 sm:mb-7 md:mb-8 text-balance"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -93,7 +43,7 @@ const AboutPage = () => {
             Innovation You Can Rely On
           </motion.p>
           <motion.p
-            className="text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto"
+            className="text-base sm:text-lg md:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto px-2 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -104,10 +54,10 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="py-20 md:py-32 px-4 md:px-8 bg-background">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-32 px-4 sm:px-6 md:px-8 bg-background">
         <div className="max-w-7xl mx-auto">
           {/* Mission Section */}
-          <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center mb-16 sm:mb-20 md:mb-24">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -120,7 +70,7 @@ const AboutPage = () => {
                 alt="Our Mission"
                 width={500}
                 height={500}
-                className="rounded-xl shadow-xl"
+                className="rounded-xl shadow-xl w-full h-auto"
               />
             </motion.div>
             <motion.div
@@ -130,16 +80,16 @@ const AboutPage = () => {
               viewport={{ once: true, margin: "-100px" }}
               className="order-1 md:order-2"
             >
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-5 md:space-y-6">
                 <div>
-                  <h2 className="text-5xl md:text-6xl font-bold text-foreground w-full border-b-4 border-primary pb-4 mb-8">Ourbur Mission</h2>
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground w-full border-b-4 border-primary pb-3 sm:pb-4 mb-6 sm:mb-7 md:mb-8">Ourbur Mission</h2>
                   
                 </div>
-                <p className="text-lg md:text-xl text-foreground/75 leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl text-foreground/75 leading-relaxed">
                   To promote dental healthcare worldwide by providing instruments that unite precision, longevity, and 
                   user-friendliness. Each product embodies our commitment to craftsmanship, innovation, and professional confidence
                 </p>
-                <p className="text-base text-foreground/60 leading-relaxed">
+                <p className="text-sm sm:text-base text-foreground/60 leading-relaxed">
                   We are committed to setting new standards in the dental instrumentation industry through continuous
                   innovation and unwavering quality.
                 </p>
@@ -148,23 +98,23 @@ const AboutPage = () => {
           </div>
 
           {/* Vision Section */}
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true, margin: "-100px" }}
             >
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-5 md:space-y-6">
                 <div>
-                  <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-4">Our Vision</h2>
-                  <div className="w-16 h-1 bg-primary rounded-full mb-8" />
+                  <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-3 sm:mb-4">Our Vision</h2>
+                  <div className="w-12 sm:w-16 h-1 bg-primary rounded-full mb-6 sm:mb-7 md:mb-8" />
                 </div>
-                <p className="text-lg md:text-xl text-foreground/75 leading-relaxed">
+                <p className="text-base sm:text-lg md:text-xl text-foreground/75 leading-relaxed">
                   To be a global leader in dental instrumentation, defining the future of dental healthcare with
                    innovative solutions, uncompromising quality, and superior service.
                 </p>
-                <p className="text-base text-foreground/60 leading-relaxed">
+                <p className="text-sm sm:text-base text-foreground/60 leading-relaxed">
                   We aspire to be recognized globally as the preferred partner for dental professionals who demand
                   excellence and reliability in every instrument.
                 </p>
@@ -181,64 +131,61 @@ const AboutPage = () => {
                 alt="Our Vision"
                 width={500}
                 height={500}
-                className="rounded-xl shadow-xl"
+                className="rounded-xl shadow-xl w-full h-auto"
               />
             </motion.div>
           </div>
         </div>
       </section>
-      <section className="py-20 md:py-28 px-4 md:px-8 bg-background/50">
-        <div className="max-w-6xl mx-auto">
+      <section className="relative py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 overflow-hidden">
+        {/* Background Image */}
+        <Image
+          src={"/surgical-instruments-precision-dental-tools.jpg"}
+          alt="Precision dental instruments"
+          fill
+          className="object-cover"
+        />
+
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/60 to-black/70" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-6xl mx-auto">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-10 md:mb-12 px-2 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="text-4xl md:text-5xl  font-bold text-foreground mb-6">Our People The Heart of Exsurion</h2>
-            <p className="text-lg text-foreground/70 leading-relaxed max-w-2xl mx-auto">
-                Our people are our biggest asset. Engineers, designers, strategists, and dental professionals collaborate
-              to develop innovative dental solutions. From initial idea to last product, our individuals implement passion,
-                       imagination, and experience, fueling each innovation and setting high standards of accuracy.
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-5 md:mb-6">
+              Our Product Catalogue
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed max-w-2xl mx-auto mb-6 sm:mb-8">
+              Explore our comprehensive range of precision dental instruments. Download our complete catalogue to discover 
+              innovative solutions designed for dental professionals worldwide.
             </p>
-          </motion.div>
-
-          <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true, margin: "-100px" }}
-          >
-            {leaders.map((leader) => (
-              <motion.div
-                key={leader.name}
-                className="relative h-80 rounded-lg overflow-hidden cursor-pointer group"
-                variants={fadeInScale}
-                whileHover={{ scale: 1.02 }}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <Button
+                onClick={() => window.open('/catalogue.pdf', '_blank')}
+                size="lg"
+                className="bg-gradient-to-r from-stone-100 to-orange-200 text-gray-800 hover:from-stone-200 hover:to-orange-300 ring-gray-400 rounded-lg font-medium cursor-pointer px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg"
               >
-                <Image src={leader.image || "/background.png"} alt={leader.name} fill className="object-cover"  />
-
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-6"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h3 className="text-2xl font-semibold text-white mb-1">{leader.name}</h3>
-                  <p className="text-sm font-medium text-primary mb-3">{leader.role}</p>
-                  <p className="text-sm text-white/90 leading-relaxed">{leader.description}</p>
-                </motion.div>
-              </motion.div>
-            ))}
+                View Catalogue
+              </Button>
+            </motion.div>
           </motion.div>
         </div>
       </section>
-      <section className="py-20 md:py-28 px-4 md:px-8 bg-primary text-primary-foreground">
-        <div className="max-w-4xl mx-auto text-center">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 bg-primary text-primary-foreground">
+        <div className="max-w-4xl mx-auto text-center px-2 sm:px-0">
           <motion.h2
-            className="text-4xl md:text-5xl  font-bold mb-8"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 sm:mb-7 md:mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -247,7 +194,7 @@ const AboutPage = () => {
             Our Commitment
           </motion.h2>
           <motion.p
-            className="text-lg leading-relaxed mb-8 opacity-95"
+            className="text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-7 md:mb-8 opacity-95"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -257,13 +204,13 @@ const AboutPage = () => {
             pursuit of excellence, we guarantee that every instrument we provide empowers professionals to deliver their best
           </motion.p>
           <motion.div
-            className="pt-8 border-t border-primary-foreground/20"
+            className="pt-6 sm:pt-7 md:pt-8 border-t border-primary-foreground/20"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <p className="text-xl  italic">
+            <p className="text-base sm:text-lg md:text-xl italic">
               Exsurion Instruments Precision You Can Trust, Innovation You Can Rely On
             </p>
           </motion.div>

@@ -44,41 +44,41 @@ export function TestimonialsSection() {
   }, [isDragging])
 
   return (
-    <section className=" py-20 px-6 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto relative h-[600px]">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 h-full">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto relative min-h-[400px] sm:min-h-[500px] md:h-[600px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 h-full">
           {/* Left Column - Static Content */}
           <div className="flex flex-col justify-center">
-            <div className="inline-block bg-white text-black px-4 py-2 rounded-full text-sm font-medium mb-8 w-fit">
+            <div className="inline-block bg-white text-black px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium mb-6 sm:mb-8 w-fit">
               TESTIMONIALS
             </div>
 
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight text-balance mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-balance mb-6 sm:mb-8">
               What Our 300+ Partners Say About Us
             </h2>
 
-            <div className="space-y-4 mb-8">
-              <div className="flex items-center gap-2">
+            <div className="space-y-3 sm:space-y-4 mb-6 sm:mb-8">
+              <div className="flex items-center gap-1.5 sm:gap-2">
                 {[...Array(4)].map((_, i) => (
-                  <Star key={i} className="w-6 h-6 fill-yellow-400 text-yellow-400" />
+                  <Star key={i} className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 fill-yellow-400 text-yellow-400" />
                 ))}
-                <Star className="w-6 h-6 fill-yellow-400/50 text-yellow-400" />
+                <Star className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 fill-yellow-400/50 text-yellow-400" />
               </div>
-              <p className="text-lg text-gray-300">4.6 / 5 Stars Customer Satisfaction Rating</p>
+              <p className="text-sm sm:text-base md:text-lg text-gray-300">4.6 / 5 Stars Customer Satisfaction Rating</p>
             </div>
 
-            <div className="flex gap-6">
-              <div className="bg-white p-4 rounded-lg">
-                <img src="/image1.jpg" alt="Clutch Award" className="h-16 w-auto" />
+            <div className="flex gap-4 sm:gap-6">
+              <div className="bg-white p-2 sm:p-3 md:p-4 rounded-lg">
+                <img src="/image1.jpg" alt="Clutch Award" className="h-10 sm:h-12 md:h-16 w-auto" />
               </div>
-              <div className="bg-white p-4 rounded-lg">
-                <img src="/image2.jpg" alt="Greenlight Guru Award" className="h-16 w-auto" />
+              <div className="bg-white p-2 sm:p-3 md:p-4 rounded-lg">
+                <img src="/image2.jpg" alt="Greenlight Guru Award" className="h-10 sm:h-12 md:h-16 w-auto" />
               </div>
             </div>
           </div>
 
           {/* Right Column - Animated Testimonials */}
-          <div className="flex items-center justify-center w-full my-auto">
+          <div className="flex items-center justify-center w-full my-auto pt-8 lg:pt-0">
             <AnimatedTestimonialsDemo />
           </div>
         </div>

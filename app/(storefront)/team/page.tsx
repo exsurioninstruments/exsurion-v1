@@ -153,7 +153,7 @@ const TeamMemberCard = ({ member, isRevealed, onToggle }: TeamMemberCardProps) =
       {/* Card */}
       <div className="relative bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 transition-all h-full flex flex-col cursor-pointer">
         {/* Image Container with Overlay */}
-        <div className="relative h-80 overflow-hidden bg-gradient-to-br from-blue-500/10 to-purple-500/10">
+        <div className="relative h-64 sm:h-72 md:h-80 overflow-hidden bg-gradient-to-br from-blue-500/10 to-purple-500/10">
           <img
             src={member.image || "https://via.placeholder.com/400x400?text=Team+Member"}
             alt={member.name}
@@ -181,9 +181,9 @@ const TeamMemberCard = ({ member, isRevealed, onToggle }: TeamMemberCardProps) =
         </div>
 
         {/* Content */}
-        <div className="p-6 flex-1 flex flex-col">
+        <div className="p-4 sm:p-5 md:p-6 flex-1 flex flex-col">
           <motion.h3
-            className="text-2xl font-semibold text-gray-900 dark:text-white mb-1"
+            className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-1"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
@@ -192,7 +192,7 @@ const TeamMemberCard = ({ member, isRevealed, onToggle }: TeamMemberCardProps) =
             {member.name}
           </motion.h3>
           <motion.p
-            className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-4"
+            className="text-xs sm:text-sm font-medium text-blue-600 dark:text-blue-400 mb-3 sm:mb-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.15 }}
@@ -296,21 +296,21 @@ const TeamsPage = () => {
   return (
     <main className="bg-gray-50 dark:bg-gray-950">
       {/* Hero Section */}
-      <section className="py-20 md:py-28 px-4 md:px-8 bg-gradient-to-b from-blue-50/50 to-white dark:from-blue-950/20 dark:to-gray-950 relative overflow-hidden">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-blue-50/50 to-white dark:from-blue-950/20 dark:to-gray-950 relative overflow-hidden">
         <motion.div
-          className="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"
+          className="absolute top-0 right-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-blue-500/5 rounded-full blur-3xl"
           animate={{ y: [0, 30, 0] }}
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"
+          className="absolute bottom-0 left-0 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-purple-500/5 rounded-full blur-3xl"
           animate={{ y: [0, -30, 0] }}
           transition={{ duration: 8, repeat: Infinity, delay: 1 }}
         />
 
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-4xl mx-auto text-center relative z-10 px-2 sm:px-0">
           <motion.h1
-            className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-5 md:mb-6"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -319,7 +319,7 @@ const TeamsPage = () => {
             Our People The Power Behind Exsurion
           </motion.h1>
           <motion.p
-            className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-8"
+            className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6 sm:mb-7 md:mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
@@ -331,7 +331,7 @@ const TeamsPage = () => {
             confidence
           </motion.p>
           <motion.p
-            className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -346,27 +346,27 @@ const TeamsPage = () => {
       </section>
 
       {/* Carousel Section */}
-      <section className="py-20 md:py-28 px-4 md:px-8 bg-white dark:bg-gray-950">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 bg-white dark:bg-gray-950">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-12 md:mb-16 px-2 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
               Meet Our Leadership
             </h2>
-            <div className="w-20 h-1 bg-blue-500 rounded-full mx-auto mb-4" />
-            <p className="text-lg text-gray-600 dark:text-gray-400">
+            <div className="w-16 sm:w-20 h-1 bg-blue-500 rounded-full mx-auto mb-3 sm:mb-4" />
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400">
               Driven by precision and passion, our team continues to innovate
               and refine.
             </p>
           </motion.div>
 
           {/* Carousel Container */}
-          <div className="relative h-[600px] md:h-[500px] flex items-center justify-center overflow-hidden rounded-2xl">
+          <div className="relative min-h-[500px] sm:min-h-[550px] md:h-[500px] lg:h-[600px] flex items-center justify-center overflow-hidden rounded-xl sm:rounded-2xl">
             <AnimatePresence initial={false} custom={direction} mode="wait">
               <motion.div
                 key={currentIndex}
@@ -381,10 +381,10 @@ const TeamsPage = () => {
                 }}
                 className="absolute w-full h-full"
               >
-                <div className="grid md:grid-cols-2 gap-8 h-full items-center px-4 md:px-8">
+                <div className="grid md:grid-cols-2 gap-6 sm:gap-7 md:gap-8 h-full items-center px-2 sm:px-4 md:px-8 py-4 sm:py-6 md:py-0">
                   {/* Image Side */}
                   <motion.div
-                    className="relative h-full rounded-2xl overflow-hidden border-2 border-blue-500/30 shadow-2xl"
+                    className="relative h-64 sm:h-72 md:h-full rounded-xl sm:rounded-2xl overflow-hidden border-2 border-blue-500/30 shadow-2xl"
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                   >
@@ -398,14 +398,14 @@ const TeamsPage = () => {
 
                   {/* Content Side */}
                   <motion.div
-                    className="space-y-6"
+                    className="space-y-4 sm:space-y-5 md:space-y-6"
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2, duration: 0.6 }}
                   >
                     <div>
                       <motion.h3
-                        className="text-4xl font-bold text-gray-900 dark:text-white mb-2"
+                        className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-1 sm:mb-2"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.3 }}
@@ -413,7 +413,7 @@ const TeamsPage = () => {
                         {teamMembers[currentIndex].name}
                       </motion.h3>
                       <motion.p
-                        className="text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4"
+                        className="text-lg sm:text-xl font-semibold text-blue-600 dark:text-blue-400 mb-3 sm:mb-4"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
@@ -423,7 +423,7 @@ const TeamsPage = () => {
                     </div>
 
                     <motion.p
-                      className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                      className="text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.5 }}
@@ -432,7 +432,7 @@ const TeamsPage = () => {
                     </motion.p>
 
                     <motion.div
-                      className="flex flex-wrap gap-3"
+                      className="flex flex-wrap gap-2 sm:gap-3"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.6 }}
@@ -440,7 +440,7 @@ const TeamsPage = () => {
                       {teamMembers[currentIndex].expertise.map((skill) => (
                         <motion.span
                           key={skill}
-                          className="px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-sm font-medium border border-blue-200 dark:border-blue-500/30 text-blue-700 dark:text-blue-300"
+                          className="px-3 sm:px-4 py-1.5 sm:py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-xs sm:text-sm font-medium border border-blue-200 dark:border-blue-500/30 text-blue-700 dark:text-blue-300"
                           whileHover={{
                             scale: 1.05,
                           }}
@@ -496,23 +496,23 @@ const TeamsPage = () => {
       </section>
 
       {/* Grid View Section */}
-      <section className="py-20 md:py-28 px-4 md:px-8 bg-gray-50 dark:bg-gray-900/50">
+      <section className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 bg-gray-50 dark:bg-gray-900/50">
         <div className="max-w-6xl mx-auto">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-10 sm:mb-12 md:mb-16 px-2 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
               Full Team Overview
             </h2>
-            <div className="w-20 h-1 bg-blue-500 rounded-full mx-auto" />
+            <div className="w-16 sm:w-20 h-1 bg-blue-500 rounded-full mx-auto" />
           </motion.div>
 
           <motion.div
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
@@ -535,13 +535,13 @@ const TeamsPage = () => {
 
       {/* Closing Section */}
       <section
-        className="py-20 md:py-28 px-4 md:px-8 bg-blue-950/90 bg-cover bg-center bg-no-repeat relative"
+        className="py-12 sm:py-16 md:py-20 lg:py-28 px-4 sm:px-6 md:px-8 bg-blue-950/90 bg-cover bg-center bg-no-repeat relative"
         style={{ backgroundImage: "url('/join-us.jpg')" }}
       >
         <div className="absolute inset-0 bg-black/50" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-4xl mx-auto text-center relative z-10 px-2 sm:px-0">
           <motion.h2
-            className="text-4xl md:text-5xl font-bold text-white mb-8"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-7 md:mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -550,7 +550,7 @@ const TeamsPage = () => {
             Together, We Shape the Future
           </motion.h2>
           <motion.p
-            className="text-xl text-gray-200 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}

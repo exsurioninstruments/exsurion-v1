@@ -35,19 +35,19 @@ export function TrustedBySection() {
   const duplicatedCompanies = [...companies, ...companies, ...companies]
 
   return (
-    <section className="bg-black text-white py-16 px-6 overflow-hidden">
+    <section className="bg-black text-white py-10 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="max-w-6xl mx-auto text-center">
-        <h3 className="text-gray-400 text-lg mb-12">Trusted by Industry Leaders</h3>
+        <h3 className="text-gray-400 text-sm sm:text-base md:text-lg mb-8 sm:mb-10 md:mb-12">Trusted by Industry Leaders</h3>
 
         <div className="relative overflow-hidden container mx-auto">
           {/* Left fade effect */}
-          <div className="absolute left-0 top-0 w-24 h-full bg-gradient-to-r from-black via-black/80 to-transparent z-10" />
+          <div className="absolute left-0 top-0 w-12 sm:w-16 md:w-24 h-full bg-gradient-to-r from-black via-black/80 to-transparent z-10" />
 
           {/* Right fade effect */}
-          <div className="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-black via-black/80 to-transparent z-10" />
+          <div className="absolute right-0 top-0 w-12 sm:w-16 md:w-24 h-full bg-gradient-to-l from-black via-black/80 to-transparent z-10" />
 
           <motion.div
-            className="flex items-center gap-16"
+            className="flex items-center gap-8 sm:gap-12 md:gap-16"
             animate={{
               x: [0, -companies.length * 256], // 200px (gap) + 56px (estimated logo width)
             }}
@@ -65,7 +65,7 @@ export function TrustedBySection() {
                 key={`${company.name}-${index}`}
                 className="flex-shrink-0 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
               >
-                <Image src={company.logo || "/background.png"} alt={`${company.name} logo`} className="h-12 w-auto" width={100} height={100} />
+                <Image src={company.logo || "/background.png"} alt={`${company.name} logo`} className="h-8 sm:h-10 md:h-12 w-auto" width={100} height={100} />
               </div>
             ))}
           </motion.div>
