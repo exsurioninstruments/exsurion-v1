@@ -151,7 +151,7 @@ export default function WhatsAppButton() {
                   className="w-full flex items-center gap-3 p-3 hover:bg-green-50 rounded-lg border border-gray-200 hover:border-green-300 transition-colors"
                 >
                   <div className="flex items-center justify-center w-10 h-10 bg-green-500 text-white rounded-full">
-                    <MessageCircle className="w-5 h-5" />
+                    <MessageCircle className="w-8 h-8" />
                   </div>
                   <div className="text-left">
                     <p className="font-medium text-gray-900">Chat on WhatsApp</p>

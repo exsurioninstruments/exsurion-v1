@@ -172,7 +172,7 @@ const AboutPage = () => {
               viewport={{ once: true }}
             >
               <Button
-                onClick={() => window.open('/catalogue.pdf', '_blank')}
+                onClick={() => window.open('/Exsurion Catalog.pdf', '_blank')}
                 size="lg"
                 className="bg-gradient-to-r from-stone-100 to-orange-200 text-gray-800 hover:from-stone-200 hover:to-orange-300 ring-gray-400 rounded-lg font-medium cursor-pointer px-6 sm:px-8 py-3 sm:py-4 text-sm sm:text-base md:text-lg"
               >

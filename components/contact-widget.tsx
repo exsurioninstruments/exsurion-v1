@@ -161,7 +161,7 @@ export function ContactWidget() {
 
       {/* Sidebar Wrapper */}
       <div
-        className={`fixed right-0 bottom-16 sm:bottom-24 md:bottom-32 lg:bottom-60 z-40 flex flex-col transition-all duration-300 ${
+        className={`fixed right-0 top-1/2 -translate-y-1/2 z-40 flex flex-col transition-all duration-300 ${
           isSidebarHidden 
             ? "translate-x-full sm:translate-x-64 md:translate-x-72" 
             : "translate-x-0"
