@@ -138,9 +138,9 @@ export default function WhatsAppButton() {
         {/* WhatsApp button with popover */}
         <Popover>
           <PopoverTrigger asChild>
-            <button className="flex items-center justify-center w-12 h-12 bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110">
-              <MessageCircle className="w-6 h-6" />
-            </button>
+            <Button variant={"ghost"} size={"icon"} >
+              <MessageCircle className="w-12" style={{ height: '80px', width: '48px' }} />
+            </Button>
           </PopoverTrigger>
           <PopoverContent className="w-72 p-0">
             <div className="bg-white rounded-lg p-4">

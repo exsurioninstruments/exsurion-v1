@@ -7,10 +7,11 @@ import { Input } from "./ui/input"
 import { Textarea } from "./ui/textarea"
 import { Button } from "./ui/button"
 import { IconBrandWhatsapp } from "@tabler/icons-react"
-import { Mail, PhoneCall, ShoppingCart } from "lucide-react"
+import { Mail, MessageCircle, PhoneCall, ShoppingCart } from "lucide-react"
 import { useCart } from "@/context/CartContext"
 import { Badge } from "./ui/badge"
 import axios from "axios"
+import Image from "next/image"
 
 export function ContactWidget() {
   const { data: storeSettings, loading } = useStoreSettings()
@@ -443,9 +444,8 @@ export function ContactWidget() {
 
       {/* Chat Widget Button */}
       <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-20 z-40">
-        <Button
+        <Button variant={"ghost"} size={"icon"} className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-18 lg:h-18 text-white rounded-full bg-green-500 hover:bg-green-600 active:bg-green-700 flex items-center justify-center shadow-2xl transition-all animate-pulse"
           onClick={() => setShowChatModal(!showChatModal)}
-          className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-20 lg:h-20 rounded-full bg-green-500 hover:bg-green-600 active:bg-green-700 flex items-center justify-center shadow-2xl transition-all animate-pulse"
         >
           <div
             className={`absolute right-16 sm:right-20 md:right-24 lg:right-28 top-1/2 -translate-y-1/2 bg-white px-3 sm:px-4 md:px-5 py-1.5 sm:py-2 rounded-full shadow-lg whitespace-nowrap text-xs sm:text-sm font-semibold transition-all hidden sm:block ${
@@ -456,8 +456,7 @@ export function ContactWidget() {
               Need Help? <span className="text-green-500">Chat with us</span>
             </span>
           </div>
-
-          <IconBrandWhatsapp className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 lg:w-10 lg:h-10 fill-white" />
+          <Image src="/whatsapp-svgrepo-com.svg" alt="WhatsApp" width={40} height={40} />
         </Button>
 
         {/* Chat Modal Backdrop */}
